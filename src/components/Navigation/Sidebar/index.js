@@ -1,0 +1,124 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { clickMenuOpen } from "../../../redux/actions";
+
+class Sidebar extends Component {
+  // componentDidMount() {
+  //   document.getElementById('body').classNameName = 'page-top';
+  // }
+  // state = {
+  //   sidebarToggled: false,
+  // }
+
+  // handleSideBarToggle() {
+  //   if (this.sidebarToogled === true) {
+  //     this.setState({ sidebarToggled: !this.state.sidebarToggled });
+  //     document.getElementById('body').classNameName = 'page-top sidebar-toggled';
+  //   } else {
+  //     this.setState({ sidebarToggled: !this.state.sidebarToggled });
+  //     document.getElementById('body').classNameName = 'page-top';
+  //   }
+
+  // }
+
+  render() {
+    const { toggled, active } = this.props;
+    return (
+      <div className="sidebar-container">
+        <div
+          className={
+            toggled
+              ? "sidemenu-container navbar-collapse collapse fixed-menu sidemenu-closed"
+              : "sidemenu-container navbar-collapse collapse fixed-menu"
+          }
+        >
+          <div id="remove-scroll">
+            <ul
+              className="sidemenu page-header-fixed p-t-20"
+              data-keep-expanded="false"
+              data-auto-scroll="true"
+              data-slide-speed="200"
+            >
+              <li className="sidebar-toggler-wrapper hide">
+                <div className="sidebar-toggler">
+                  <span></span>
+                </div>
+              </li>
+              <li className="sidebar-user-panel">
+                <div className="user-panel">
+                  <div className="pull-left image">
+                    <img
+                      src="https://trello-attachments.s3.amazonaws.com/5f54594b43b5dd5579bc4655/59x60/6272fbd8a05d0a48bf081f2465ac95f0/Frame_%287%29.png"
+                      className="img-circle user-img-circle"
+                      alt="User"
+                    />
+                  </div>
+                  <div className="pull-left info">
+                    <p className="text-white"> Marria</p>
+                    <a title="Inbox" href="email_inbox.html">
+                      <i className="material-icons">email</i>
+                    </a>
+                    <a title="Profile" href="user_profile.html">
+                      <i className="material-icons">person</i>
+                    </a>
+                    <a title="Logout" href="login.html">
+                      <i className="material-icons">power_settings_new</i>
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <li className="menu-heading">
+                <span>-- Main</span>
+              </li>
+              <li
+                className={active === "home" ? "nav-item active" : "nav-item"}
+              >
+                <Link className="nav-link nav-toggle" to="/dashboard">
+                  <i className="material-icons">dashboard</i>
+                  <span className="title">Dashboard</span>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <a href="#" className="nav-link nav-toggle">
+                  <i className="material-icons">airport_shuttle</i>
+                  <span className="title">Vehicle</span>
+                  <span className="arrow"></span>
+                </a>
+                <ul className="sub-menu">
+                  <li className="nav-item">
+                    <a href="add_vehicle.html" className="nav-link ">
+                      <span className="title">Add Vehicle Details</span>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a href="all_vehicles.html" className="nav-link ">
+                      <span className="title">View All Vehicle</span>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a href="edit_vehicle.html" className="nav-link ">
+                      <span className="title">Edit Vehicle Details</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ clickMenuOpen }, dispatch);
+
+const mapStateToProps = (store) => ({
+  toggled: store.menuState.menuOpen,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
