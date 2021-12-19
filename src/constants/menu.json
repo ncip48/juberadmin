@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Dashboard",
+    "icon": "dashboard",
+    "to": "dashboard",
+    "active": "dashboard"
+  },
+  {
+    "name": "Pengembalian Barang",
+    "icon": "keyboard_return",
+    "to": "PengembalianAdmin",
+    "active": "pengembalian"
+  },
+  {
+    "name": "Penjualan",
+    "icon": "shopping_basket",
+    "to": "ProdukAdmin",
+    "active": "penjualan"
+  },
+  {
+    "name": "Periksa Chat",
+    "icon": "chat",
+    "to": "PeriksaChatAdmin",
+    "active": "periksa"
+  },
+  {
+    "name": "Verifikasi",
+    "icon": "check_circle",
+    "to": "VerifikasiAdmin",
+    "active": "verifikasi"
+  },
+  {
+    "name": "Blokir/Unblokir",
+    "icon": "block",
+    "to": "ListBlokir",
+    "active": "blokir"
+  },
+  {
+    "name": "Chat Komplain",
+    "icon": "chat_bubble",
+    "to": "ChatKomplain",
+    "active": "chat"
+  },
+  {
+    "name": "Informasi",
+    "icon": "info",
+    "to": "InformasiAdmin",
+    "active": "informasi"
+  },
+  {
+    "name": "Broadcast",
+    "icon": "radio",
+    "to": "BroadcastAdmin",
+    "active": "broadcast"
+  },
+  {
+    "name": "Top Merchant/Produk",
+    "icon": "store",
+    "to": "List Top Merchant",
+    "active": "topmerchant"
+  },
+  {
+    "name": "Update Versi",
+    "icon": "system_update",
+    "to": "UpdateVersi",
+    "active": "update"
+  },
+  {
+    "name": "Voucher",
+    "icon": "loyalty",
+    "to": "AdminVoucher",
+    "active": "voucher"
+  },
+  {
+    "name": "Check Akun / HP",
+    "icon": "contact_phone",
+    "to": "AdminCheckAccount",
+    "active": "check"
+  },
+  {
+    "name": "Pengaturan",
+    "icon": "settings",
+    "to": "AdminSettings",
+    "active": "setting"
+  },
+  {
+    "name": "Pengaturan ALL IN",
+    "icon": "settings_applications",
+    "to": "AdminSettingsALLIN",
+    "active": "settingallin"
+  }
+]
