@@ -1,14 +1,12 @@
 import React from "react";
 
-function ItemHome({ title, img }) {
+function ItemHome({ title, icon }) {
   return (
-    <div className="card circle bg-dark">
+    <div className="card circle">
       <div className="panel-body mt-3">
-        <img
-          src={img}
-          alt={title}
-          style={{ height: "4rem", width: "4rem", objectFit: "contain" }}
-        />
+        <i className="material-icons" style={{ fontSize: "2.3rem" }}>
+          {icon}
+        </i>
         <h6>{title}</h6>
       </div>
     </div>

@@ -2,13 +2,17 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="sticky-footer bg-white">
-      <div className="container my-auto">
-        <div className="copyright text-center my-auto">
-          <span>Copyright &copy; Edit ini woi di components/Footer 2021</span>
-        </div>
+    <div className="page-footer">
+      <div className="page-footer-inner">
+        2021 &copy; Juber Admin. Template By
+        <a href="/" className="makerCss">
+          Redstartheme
+        </a>
       </div>
-    </footer>
+      <div className="scroll-to-top">
+        <i className="material-icons">eject</i>
+      </div>
+    </div>
   );
 }
 

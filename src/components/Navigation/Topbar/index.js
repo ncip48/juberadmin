@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { clickMenuOpen } from "../../../redux/actions";
@@ -13,14 +13,14 @@ class Topbar extends Component {
       <div className="page-header navbar navbar-fixed-top">
         <div className="page-header-inner ">
           <div className="page-logo">
-            <a href="index.html">
+            <Link to="/dashboard">
               <img
                 alt=""
                 src="https://trello-attachments.s3.amazonaws.com/5f54594b43b5dd5579bc4655/72x72/4af7d493734b0de09f97029ab846ed43/image_38.png"
                 style={{ height: 40, width: 40 }}
               />
               <span className="logo-default ml-2">Juber</span>
-            </a>
+            </Link>
           </div>
           {/* <ul className="nav navbar-nav navbar-left in">
             <li>

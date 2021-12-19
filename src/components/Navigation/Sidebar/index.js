@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { clickMenuOpen } from "../../../redux/actions";
+import items from "../../../constants/menu.json";
 
 class Sidebar extends Component {
   // componentDidMount() {
@@ -74,15 +74,22 @@ class Sidebar extends Component {
               <li className="menu-heading">
                 <span>-- Main</span>
               </li>
-              <li
-                className={active === "home" ? "nav-item active" : "nav-item"}
-              >
-                <Link className="nav-link nav-toggle" to="/dashboard">
-                  <i className="material-icons">dashboard</i>
-                  <span className="title">Dashboard</span>
-                </Link>
-              </li>
-              <li className="nav-item">
+              {items.map((item, index) => {
+                return (
+                  <li
+                    className={
+                      active === item.active ? "nav-item active" : "nav-item"
+                    }
+                    key={index}
+                  >
+                    <Link className="nav-link nav-toggle" to={item.to}>
+                      <i className="material-icons">{item.icon}</i>
+                      <span className="title">{item.name}</span>
+                    </Link>
+                  </li>
+                );
+              })}
+              {/* <li className="nav-item">
                 <a href="#" className="nav-link nav-toggle">
                   <i className="material-icons">airport_shuttle</i>
                   <span className="title">Vehicle</span>
@@ -105,7 +112,7 @@ class Sidebar extends Component {
                     </a>
                   </li>
                 </ul>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

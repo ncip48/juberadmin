@@ -1,10 +1,24 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 
-const PageHeading = ({ title = '' }) => (
-    < div className="d-sm-flex align-items-center justify-content-between mb-4" >
-        <h1 className="h3 mb-0 text-gray-800">{title}</h1>
-        {/* <a href="#" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i className="fas fa-download fa-sm text-white-50"></i> Generate Report</a> */}
-    </div >
-)
+const PageHeading = ({ title = "" }) => (
+  <div className="page-bar">
+    <div className="page-title-breadcrumb">
+      <div className=" pull-left">
+        <div className="page-title">{title}</div>
+      </div>
+      <ol className="breadcrumb page-breadcrumb pull-right">
+        <li>
+          <i className="fa fa-home"></i>&nbsp;
+          <Link className="parent-item" to="/dashboard">
+            Home
+          </Link>
+          &nbsp;<i className="fa fa-angle-right"></i>
+        </li>
+        <li className="active">{title}</li>
+      </ol>
+    </div>
+  </div>
+);
 
 export default PageHeading;
