@@ -27,7 +27,7 @@ export const generateHeaders = async (types) => {
     }
 
     if (types.includes("irsauth_header")) {
-      headers["Access-Control-Allow-Headers"] = "*";
+      headers["Access-Control-Allow-Headers"] = "irsauth";
     }
 
     return { headers };

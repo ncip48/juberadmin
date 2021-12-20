@@ -13,7 +13,7 @@ class Topbar extends Component {
       <div className="page-header navbar navbar-fixed-top">
         <div className="page-header-inner ">
           <div className="page-logo">
-            <Link to="/dashboard">
+            <Link to="/">
               <img
                 alt=""
                 src="https://trello-attachments.s3.amazonaws.com/5f54594b43b5dd5579bc4655/72x72/4af7d493734b0de09f97029ab846ed43/image_38.png"

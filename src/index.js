@@ -22,6 +22,9 @@ import "./styles/css/style.css";
 import "./styles/css/responsive.css";
 import "./styles/css/theme-color.css";
 
+//toastify
+import "react-toastify/dist/ReactToastify.css";
+
 //Redux
 import { Provider } from "react-redux";
 import { Store } from "./redux/store";

@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import AuthService from "../../services/AuthService";
 import "../../styles/css/extra_pages.scss";
 import "../../styles/css/material-design-iconic-font.min.scss";
+import { ToastContainer, toast } from "react-toastify";
 
 let phoneAdmin = ["085156842765", "087730545111"];
 
@@ -12,10 +13,6 @@ function SignIn() {
   const [form, setForm] = useState({
     no_hp: null,
     otp: null,
-  });
-  const [error, setError] = useState({
-    error: false,
-    msg: null,
   });
   const [loginState, setLoginState] = useState({
     step: 0,
@@ -29,83 +26,89 @@ function SignIn() {
   const lanjutAction = async () => {
     console.log(form);
     if (!phoneAdmin.includes(form.no_hp))
-      return setError({ error: true, msg: "Bukan No HP Admin" });
+      return toast.error("Bukan No HP Admin");
 
-    let getOtp = await AuthService.loginOtp({ phone: form.no_hp });
-    console.log(getOtp);
-    setError({ error: false, msg: null });
+    try {
+      let getOtp = await AuthService.loginOtp({ phone: form.no_hp });
+      console.log(getOtp);
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   const loginAction = () => {};
 
   return (
-    <div className="limiter">
-      <div className="container-login100 page-background">
-        <div className="wrap-login100">
-          {error.error && (
+    <>
+      <div className="limiter">
+        <div className="container-login100 page-background">
+          <div className="wrap-login100">
+            {/* {error.error && (
             <div className="alert alert-danger">
               <strong>Error!</strong> {error.msg}
             </div>
-          )}
-          <div className="login100-form validate-form">
-            <span className="login100-form-logo">
-              <img
-                alt=""
-                src="https://trello-attachments.s3.amazonaws.com/5f54594b43b5dd5579bc4655/72x72/4af7d493734b0de09f97029ab846ed43/image_38.png"
-              />
-            </span>
-            <span className="login100-form-title p-b-34 p-t-27">Log in</span>
-            <div className="wrap-input100 validate-input">
-              <input
-                className="input100"
-                type="text"
-                name="nohp"
-                placeholder="No HP"
-                onChange={handleChange("no_hp")}
-              />
-              <span
-                className="focus-input100"
-                data-placeholder="&#xf2c8;"
-              ></span>
-            </div>
-            {loginState.step === 1 && (
+          )} */}
+            <div className="login100-form validate-form">
+              <span className="login100-form-logo">
+                <img
+                  alt=""
+                  src="https://trello-attachments.s3.amazonaws.com/5f54594b43b5dd5579bc4655/72x72/4af7d493734b0de09f97029ab846ed43/image_38.png"
+                />
+              </span>
+              <span className="login100-form-title p-b-34 p-t-27">Log in</span>
               <div className="wrap-input100 validate-input">
                 <input
                   className="input100"
-                  type="password"
-                  name="otp"
-                  placeholder="OTP"
-                  onChange={handleChange("otp")}
+                  type="text"
+                  name="nohp"
+                  placeholder="No HP"
+                  onChange={handleChange("no_hp")}
                 />
                 <span
                   className="focus-input100"
-                  data-placeholder="&#xf191;"
+                  data-placeholder="&#xf2c8;"
                 ></span>
               </div>
-            )}
-            {loginState.step === 0 ? (
-              <div className="container-login100-form-btn">
-                <button
-                  className="login100-form-btn"
-                  onClick={() => lanjutAction()}
-                >
-                  Lanjutkan
-                </button>
-              </div>
-            ) : (
-              <div className="container-login100-form-btn">
-                <button
-                  className="login100-form-btn"
-                  onClick={() => loginAction()}
-                >
-                  Masuk
-                </button>
-              </div>
-            )}
+              {loginState.step === 1 && (
+                <div className="wrap-input100 validate-input">
+                  <input
+                    className="input100"
+                    type="password"
+                    name="otp"
+                    placeholder="OTP"
+                    onChange={handleChange("otp")}
+                  />
+                  <span
+                    className="focus-input100"
+                    data-placeholder="&#xf191;"
+                  ></span>
+                </div>
+              )}
+              {loginState.step === 0 ? (
+                <div className="container-login100-form-btn">
+                  <button
+                    className="login100-form-btn"
+                    onClick={() => lanjutAction()}
+                  >
+                    Lanjutkan
+                  </button>
+                </div>
+              ) : (
+                <div className="container-login100-form-btn">
+                  <button
+                    className="login100-form-btn"
+                    onClick={() => loginAction()}
+                  >
+                    Masuk
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <ToastContainer />
+    </>
   );
 }
 
