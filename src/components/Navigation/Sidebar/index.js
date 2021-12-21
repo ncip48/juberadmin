@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { clickMenuOpen } from "../../../redux/actions";
+import { logout } from "../../../redux/actions/auth";
 import items from "../../../constants/menu.json";
 
 class Sidebar extends Component {
@@ -25,8 +26,15 @@ class Sidebar extends Component {
 
   // }
 
+  doLogout() {
+    const { logout, history } = this.props;
+    logout();
+    history.push("/login");
+  }
+
   render() {
-    const { toggled, active } = this.props;
+    const { toggled, active, user } = this.props;
+    console.log(user);
     return (
       <div className="sidebar-container">
         <div
@@ -58,16 +66,16 @@ class Sidebar extends Component {
                     />
                   </div>
                   <div className="pull-left info">
-                    <p className="text-white"> Marria</p>
+                    <p className="text-white"> {user?.namars}</p>
                     <a title="Inbox" href="email_inbox.html">
                       <i className="material-icons">email</i>
                     </a>
                     <a title="Profile" href="user_profile.html">
                       <i className="material-icons">person</i>
                     </a>
-                    <a title="Logout" href="login.html">
+                    <button title="Logout" onClick={() => this.doLogout()}>
                       <i className="material-icons">power_settings_new</i>
-                    </a>
+                    </button>
                   </div>
                 </div>
               </li>
@@ -122,10 +130,14 @@ class Sidebar extends Component {
 }
 
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ clickMenuOpen }, dispatch);
+  bindActionCreators({ clickMenuOpen, logout }, dispatch);
 
 const mapStateToProps = (store) => ({
   toggled: store.menuState.menuOpen,
+  user: store.auth.user,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(Sidebar));

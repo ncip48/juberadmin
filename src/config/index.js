@@ -17,10 +17,9 @@ export const generateHeaders = async (types) => {
       headers["Content-Type"] = "multipart/form-data";
     }
     if (types.includes("authorization")) {
-      const persist = await localStorage.getItem("auth");
-      const root = JSON.parse(persist);
-      const auth = JSON.parse(root.auth);
-      headers["Authorization"] = "Bearer " + auth.token;
+      const persist = await localStorage.getItem("user");
+      const auth = JSON.parse(persist);
+      headers["Authorization"] = "Bearer " + auth.auth.token;
     }
     if (types.includes("irsauth")) {
       headers["irsauth"] = "0bed9ef79bed8f89ac13927fd170d66d";

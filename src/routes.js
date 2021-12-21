@@ -6,14 +6,15 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import SignIn from "./pages/SignIn";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
+import { LoginRoute } from "./components/LoginRoute";
 
 const Routes = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/login" component={SignIn} />
+      <LoginRoute exact path="/login" component={SignIn} />
       <PrivateRoute exact path="/" component={Dashboard} />
       <PrivateRoute path="/home" component={Dashboard} />
-      <Route path="/dashboard" component={Dashboard} />
+      <PrivateRoute path="/dashboard" component={Dashboard} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>

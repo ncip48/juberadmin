@@ -5,13 +5,15 @@ import AuthService from "../../services/AuthService";
 import "../../styles/css/extra_pages.scss";
 import "../../styles/css/material-design-iconic-font.min.scss";
 import { ToastContainer, toast } from "react-toastify";
+import { _fetch } from "../../redux/actions/global";
+import { login } from "../../redux/actions/auth";
 
 let phoneAdmin = ["085156842765", "087730545111"];
 
-function SignIn() {
+function SignIn({ history }) {
   const dispatch = useDispatch();
   const [form, setForm] = useState({
-    no_hp: null,
+    no_hp: "",
     otp: null,
   });
   const [loginState, setLoginState] = useState({
@@ -24,19 +26,40 @@ function SignIn() {
   };
 
   const lanjutAction = async () => {
-    console.log(form);
+    if (form.no_hp.length === 0) return toast.error("Masukkan No HP");
     if (!phoneAdmin.includes(form.no_hp))
       return toast.error("Bukan No HP Admin");
 
     try {
-      let getOtp = await AuthService.loginOtp({ phone: form.no_hp });
-      console.log(getOtp);
+      let res = await dispatch(
+        _fetch(AuthService.loginOtp({ phone: form.no_hp }))
+      );
+      setLoginState({ step: 1, msg: res.data.value });
     } catch (error) {
       toast.error(error.message);
     }
   };
 
-  const loginAction = () => {};
+  const loginAction = async () => {
+    try {
+      let res = await dispatch(
+        _fetch(AuthService.verifyRegisterOtp({ otp: String(form.otp) }))
+      );
+      await dispatch(
+        login({
+          idrs: res.idrs,
+          namars: res.namars,
+          poin: res.poin || 0,
+          saldo: res.saldo || 0,
+          token: res.token,
+          phone: form.no_hp,
+        })
+      );
+      history.push("/dashboard");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <>
@@ -73,7 +96,7 @@ function SignIn() {
                 <div className="wrap-input100 validate-input">
                   <input
                     className="input100"
-                    type="password"
+                    type="text"
                     name="otp"
                     placeholder="OTP"
                     onChange={handleChange("otp")}
@@ -94,13 +117,23 @@ function SignIn() {
                   </button>
                 </div>
               ) : (
-                <div className="container-login100-form-btn">
-                  <button
-                    className="login100-form-btn"
-                    onClick={() => loginAction()}
-                  >
-                    Masuk
-                  </button>
+                <div className="d-flex">
+                  <div className="container-login100-form-btn">
+                    <button
+                      className="login100-form-btn btn-block"
+                      onClick={() => loginAction()}
+                    >
+                      Masuk
+                    </button>
+                  </div>
+                  <div className="container-login100-form-btn justify-content-end">
+                    <button
+                      className="login100-form-btn"
+                      onClick={() => setLoginState({ ...loginState, step: 0 })}
+                    >
+                      Batalkan
+                    </button>
+                  </div>
                 </div>
               )}
             </div>

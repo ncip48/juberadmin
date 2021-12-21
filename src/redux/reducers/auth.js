@@ -1,9 +1,10 @@
-let user = JSON.parse(localStorage.getItem("user"));
-const initialState = user ? { loggedIn: true, user } : {};
+let users = localStorage.getItem("user");
+const user = JSON.parse(users);
+const initialState = user ? { loggedIn: true, user: user.auth } : {};
 
 export function Auth(state = initialState, action) {
   switch (action.type) {
-    case "LOGIN_SUCCES":
+    case "LOGIN_SUCCESS":
       return {
         loggingIn: true,
         user: action.user,

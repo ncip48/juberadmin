@@ -16,7 +16,7 @@ export default {
   async verifyRegisterOtp(payload) {
     const config = await generateHeaders(["irsauth", "content-json"]);
     return baseRequest.post(
-      "/apps/users/verifyregotp",
+      "/apps/users/verifyotp",
       { ...payload, uuid },
       config
     );

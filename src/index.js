@@ -2,7 +2,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import Spinner from "./components/Spinner";
+// import Spinner from "./components/Spinner";
+// import { PersistGate } from "redux-persist/integration/react";
 
 //Boostrap Libs
 import $ from "jquery";
@@ -28,11 +29,15 @@ import "react-toastify/dist/ReactToastify.css";
 //Redux
 import { Provider } from "react-redux";
 import { Store } from "./redux/store";
+// import configureStore from "./redux/store";
+
+// const { store, persistor } = configureStore();
 
 ReactDOM.render(
   <Provider store={Store}>
+    {/* <PersistGate loading={null} persistor={persistor}> */}
     <App />
-    {/* <Spinner /> */}
+    {/* </PersistGate> */}
   </Provider>,
   document.getElementById("root")
 );
