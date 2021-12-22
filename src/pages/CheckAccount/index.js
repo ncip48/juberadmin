@@ -40,7 +40,7 @@ function CheckAccount() {
         <Container>
           <Sidebar active="check" />
           <Content>
-            <PageHeading title="Cek Akun" />
+            <PageHeading title="Cek Akun / HP" />
             <div className="row">
               <div className="col-12">
                 <Card>

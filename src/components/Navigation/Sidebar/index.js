@@ -34,7 +34,6 @@ class Sidebar extends Component {
 
   render() {
     const { toggled, active, user } = this.props;
-    console.log(user);
     return (
       <div className="sidebar-container">
         <div
