@@ -1,3 +1,13 @@
 body {
   font-family: Poppins, sans-serif;
 }
+
+/* .form-control:focus {
+  border-color: #e74a3b;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+.has-error .form-control:focus {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+} */

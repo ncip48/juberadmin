@@ -20,6 +20,7 @@ import "./styles/css/material.min.css";
 import "./styles/css/material_style.css";
 // import "./styles/css/plugins.min.css";
 import "./styles/css/style.css";
+import "./styles/css/formlayout.css";
 import "./styles/css/responsive.css";
 import "./styles/css/theme-color.css";
 

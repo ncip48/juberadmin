@@ -20,6 +20,8 @@ import Spinner from "./Spinner";
 import Table from "./Table/Default";
 import Wrapper from "./Wrapper";
 import ItemHome from "./ItemHome";
+import Content from "./Content";
+import Card from "./Card";
 
 export {
   Button,
@@ -44,4 +46,6 @@ export {
   Table,
   Wrapper,
   ItemHome,
+  Content,
+  Card,
 };

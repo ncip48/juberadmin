@@ -12,7 +12,7 @@ function Button({
     <button
       {...otherProps}
       type="button"
-      className={`btn btn-${type} btn-block ${
+      className={`mdl-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-${type} btn-block ${
         (small || large) && `btn-${small ? "sm" : large ? "lg" : ""}`
       } ${rounded ? "rounded-pill" : ""}`}
     >

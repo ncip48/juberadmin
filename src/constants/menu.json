@@ -74,7 +74,7 @@
   {
     "name": "Check Akun / HP",
     "icon": "contact_phone",
-    "to": "AdminCheckAccount",
+    "to": "check-account",
     "active": "check"
   },
   {

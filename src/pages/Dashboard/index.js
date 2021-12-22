@@ -2,6 +2,7 @@
 import React from "react";
 import {
   Container,
+  Content,
   ItemHome,
   PageHeading,
   Sidebar,
@@ -17,24 +18,22 @@ function Dashboard() {
       <Topbar />
       <Container>
         <Sidebar active="dashboard" />
-        <div className="page-content-wrapper">
-          <div className="page-content" style={{ minHeight: 1615 }}>
-            <PageHeading title="Dashboard" />
-            <div className="row clearfix">
-              {items.map((item, index) => {
-                return (
-                  <Link
-                    key={index}
-                    className="col-xl-2 col-lg-3 col-md-6 col-sm-12 text-center text-dark"
-                    to={item.to}
-                  >
-                    <ItemHome title={item.name} icon={item.icon} />
-                  </Link>
-                );
-              })}
-            </div>
+        <Content>
+          <PageHeading title="Dashboard" />
+          <div className="row clearfix">
+            {items.map((item, index) => {
+              return (
+                <Link
+                  key={index}
+                  className="col-xl-2 col-lg-3 col-md-6 col-sm-12 text-center text-dark"
+                  to={item.to}
+                >
+                  <ItemHome title={item.name} icon={item.icon} />
+                </Link>
+              );
+            })}
           </div>
-        </div>
+        </Content>
       </Container>
     </Wrapper>
   );
