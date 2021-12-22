@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import {
   Button,
   Card,
@@ -21,6 +21,7 @@ function CheckAccount() {
   const [result, setResult] = useState("");
 
   const checkAction = async () => {
+    if (phone.length === 0) return toast.error("Masukkan No HP");
     const res = await dispatch(
       _fetch(
         BridgeService.JbDelivery({

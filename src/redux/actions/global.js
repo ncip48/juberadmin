@@ -12,7 +12,7 @@ export const _fetch =
         request
           .then((res) => {
             const data = res.data || res.body;
-            console.log("errdata", data);
+            // console.log("errdata", data);
             // eslint-disable-next-line eqeqeq
             // if (data?.data?.code != 200) return handleFetchError(data?.data?.msg);
             if (data?.hasOwnProperty("success") && !data?.success) {
@@ -27,7 +27,7 @@ export const _fetch =
               } else if (data?.hasOwnProperty("message")) {
                 handleFetchError(data.message);
               } else handleFetchError(data?.data || data);
-              console.log("URL", res?.url || res?.config?.url);
+              // console.log("URL", res?.url || res?.config?.url);
             } else if (
               data?.data?.hasOwnProperty("success") &&
               !data?.data?.success
@@ -38,7 +38,7 @@ export const _fetch =
                 handleFetchError("terjadi kesalahan");
               }
             } else {
-              console.log(res?.url || res?.config?.url, data || res);
+              // console.log(res?.url || res?.config?.url, data || res);
               return data || res;
             }
           })
