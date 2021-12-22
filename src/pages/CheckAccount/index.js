@@ -26,7 +26,8 @@ function CheckAccount() {
         BridgeService.JbDelivery({
           key: "searchphone",
           payload: JSON.stringify({ telp: phone }),
-        })
+        }),
+        false
       )
     );
     setResult(res.data.msg);
@@ -46,10 +47,11 @@ function CheckAccount() {
                   <Input
                     label="No HP"
                     onChange={(e) => setPhone(e.target.value)}
+                    placeholder="Masukkan No HP"
                   />
                   <Button
                     title="Submit"
-                    type="pink"
+                    type="warning"
                     onClick={() => checkAction()}
                   />
                   {result.length !== 0 && (
