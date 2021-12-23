@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { PrivateRoute } from "./components/PrivateRoute";
 
 //Pages
-import { SignIn, Dashboard, NotFound, CheckAccount } from "./pages";
+import { SignIn, Dashboard, NotFound, CheckAccount, Broadcast } from "./pages";
 import { LoginRoute } from "./components/LoginRoute";
 
 const Routes = () => (
@@ -14,6 +14,7 @@ const Routes = () => (
       <PrivateRoute path="/home" component={Dashboard} />
       <PrivateRoute path="/dashboard" component={Dashboard} />
       <PrivateRoute path="/check-account" component={CheckAccount} />
+      <PrivateRoute path="/broadcast" component={Broadcast} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>

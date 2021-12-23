@@ -3,6 +3,11 @@ import axios from "axios";
 export const baseUrl = "http://45.77.173.173:9299";
 export const uuid = "e4351a1d0579f6a0";
 export const baseRequest = axios.create({ baseURL: baseUrl });
+export const uploadRequest = axios.create({ baseURL: "https://juber.co.id" });
+export const socketHost = axios.create({
+  baseURL: "http://116.193.191.172:8002",
+});
+
 export const generateHeaders = async (types) => {
   try {
     let headers = {};

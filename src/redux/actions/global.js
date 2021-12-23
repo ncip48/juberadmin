@@ -54,7 +54,9 @@ export const _fetch =
           pending: "Loading...",
           success: {
             render({ data }) {
-              return success ? data?.data?.msg : "Success Fetching API";
+              return success
+                ? data?.data?.msg || data?.message
+                : "Success Fetching API";
             },
             // other options
             // icon: "🟢",
