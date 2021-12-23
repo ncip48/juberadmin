@@ -3,7 +3,16 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { PrivateRoute } from "./components/PrivateRoute";
 
 //Pages
-import { SignIn, Dashboard, NotFound, CheckAccount, Broadcast } from "./pages";
+import {
+  SignIn,
+  Dashboard,
+  NotFound,
+  CheckAccount,
+  Broadcast,
+  Informasi,
+  InformasiCreate,
+  InformasiEdit,
+} from "./pages";
 import { LoginRoute } from "./components/LoginRoute";
 
 const Routes = () => (
@@ -15,6 +24,9 @@ const Routes = () => (
       <PrivateRoute path="/dashboard" component={Dashboard} />
       <PrivateRoute path="/check-account" component={CheckAccount} />
       <PrivateRoute path="/broadcast" component={Broadcast} />
+      <PrivateRoute path="/information" component={Informasi} />
+      <PrivateRoute path="/create-information" component={InformasiCreate} />
+      <PrivateRoute path="/edit-information" component={InformasiEdit} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>

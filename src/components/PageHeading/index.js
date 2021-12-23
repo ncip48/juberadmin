@@ -1,11 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const PageHeading = ({ title = "" }) => (
+const PageHeading = ({ title = "", add = false, to }) => (
   <div className="page-bar">
     <div className="page-title-breadcrumb">
       <div className=" pull-left">
-        <div className="page-title">{title}</div>
+        <div className="page-title">
+          {title}
+          {add && (
+            <Link
+              type="button"
+              className="ml-3 btn btn-circle btn-sms btn-warning"
+              to={to}
+            >
+              <i className="fa fa-plus"></i> Tambahkan{" "}
+            </Link>
+          )}
+        </div>
       </div>
       <ol className="breadcrumb page-breadcrumb pull-right">
         <li>
