@@ -8,6 +8,7 @@ import InformasiCreate from "./InformasiCreate";
 import InformasiEdit from "./InformasiEdit";
 import UpdateVersi from "./UpdateVersi";
 import Voucher from "./Voucher";
+import VoucherCreate from "./VoucherCreate";
 
 export {
   SignIn,
@@ -20,4 +21,5 @@ export {
   InformasiEdit,
   UpdateVersi,
   Voucher,
+  VoucherCreate,
 };

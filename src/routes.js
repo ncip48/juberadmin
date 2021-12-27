@@ -14,6 +14,7 @@ import {
   InformasiEdit,
   UpdateVersi,
   Voucher,
+  VoucherCreate,
 } from "./pages";
 import { LoginRoute } from "./components/LoginRoute";
 
@@ -31,6 +32,7 @@ const Routes = () => (
       <PrivateRoute path="/edit-information" component={InformasiEdit} />
       <PrivateRoute path="/update-version" component={UpdateVersi} />
       <PrivateRoute path="/voucher" component={Voucher} />
+      <PrivateRoute path="/create-voucher" component={VoucherCreate} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>
