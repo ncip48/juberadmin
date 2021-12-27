@@ -55,7 +55,7 @@ export const _fetch =
           success: {
             render({ data }) {
               return success
-                ? data?.data?.msg || data?.message
+                ? data?.data?.msg || data?.message || data?.data?.message
                 : "Success Fetching API";
             },
             // other options

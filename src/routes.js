@@ -12,6 +12,7 @@ import {
   Informasi,
   InformasiCreate,
   InformasiEdit,
+  UpdateVersi,
 } from "./pages";
 import { LoginRoute } from "./components/LoginRoute";
 
@@ -27,6 +28,7 @@ const Routes = () => (
       <PrivateRoute path="/information" component={Informasi} />
       <PrivateRoute path="/create-information" component={InformasiCreate} />
       <PrivateRoute path="/edit-information" component={InformasiEdit} />
+      <PrivateRoute path="/update-version" component={UpdateVersi} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>

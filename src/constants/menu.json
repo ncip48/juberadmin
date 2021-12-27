@@ -62,7 +62,7 @@
   {
     "name": "Update Versi",
     "icon": "system_update",
-    "to": "UpdateVersi",
+    "to": "update-version",
     "active": "update"
   },
   {

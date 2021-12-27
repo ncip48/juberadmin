@@ -6,6 +6,7 @@ import Broadcast from "./Broadcast";
 import Informasi from "./Informasi";
 import InformasiCreate from "./InformasiCreate";
 import InformasiEdit from "./InformasiEdit";
+import UpdateVersi from "./UpdateVersi";
 
 export {
   SignIn,
@@ -16,4 +17,5 @@ export {
   Informasi,
   InformasiCreate,
   InformasiEdit,
+  UpdateVersi,
 };
