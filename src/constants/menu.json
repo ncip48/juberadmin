@@ -68,7 +68,7 @@
   {
     "name": "Voucher",
     "icon": "loyalty",
-    "to": "AdminVoucher",
+    "to": "voucher",
     "active": "voucher"
   },
   {

@@ -23,6 +23,7 @@ import "./styles/css/style.css";
 import "./styles/css/formlayout.css";
 import "./styles/css/responsive.css";
 import "./styles/css/theme-color.css";
+import "./styles/css/width.css";
 
 //toastify
 import "react-toastify/dist/ReactToastify.css";

@@ -13,6 +13,7 @@ import {
   InformasiCreate,
   InformasiEdit,
   UpdateVersi,
+  Voucher,
 } from "./pages";
 import { LoginRoute } from "./components/LoginRoute";
 
@@ -29,6 +30,7 @@ const Routes = () => (
       <PrivateRoute path="/create-information" component={InformasiCreate} />
       <PrivateRoute path="/edit-information" component={InformasiEdit} />
       <PrivateRoute path="/update-version" component={UpdateVersi} />
+      <PrivateRoute path="/voucher" component={Voucher} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>
