@@ -80,7 +80,7 @@
   {
     "name": "Pengaturan",
     "icon": "settings",
-    "to": "AdminSettings",
+    "to": "setting",
     "active": "setting"
   },
   {
