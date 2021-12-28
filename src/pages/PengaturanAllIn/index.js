@@ -12,7 +12,7 @@ import {
 import { _fetch } from "../../redux/actions/global";
 import { BridgeService } from "../../services";
 
-function Pengaturan() {
+function PengaturanAllIn() {
   const dispatch = useDispatch();
   const [result, setResult] = useState(null);
 
@@ -23,7 +23,7 @@ function Pengaturan() {
 
   const getSetting = async () => {
     const res = await dispatch(
-      _fetch(BridgeService.JbDelivery({ key: "allsetting" }))
+      _fetch(BridgeService.JbDelivery({ key: "settingjballin" }))
     );
     let newData = [];
     let result = res.data.lobj;
@@ -37,7 +37,7 @@ function Pengaturan() {
     await dispatch(
       _fetch(
         BridgeService.JbDelivery({
-          key: "savesetting",
+          key: "savesettingallin",
           payload,
         })
       )
@@ -47,20 +47,27 @@ function Pengaturan() {
 
   const editAction = async (item) => {
     const newArr = result.map((p) =>
-      p.idapps === item.idapps ? { ...p, isEditing: !p.isEditing } : p
+      p.idsetting === item.idsetting ? { ...p, isEditing: !p.isEditing } : p
     );
     setResult(newArr);
     if (item.isEditing === true) {
       const payload = JSON.stringify({
-        list: [{ idapps: item.idapps, desc: item.desc, value: item.value }],
+        listallin: [
+          {
+            idsetting: item.idsetting,
+            jaraktambahan: Number(item.jaraktambahan),
+            ongkir: Number(item.ongkir),
+            tambahan: Number(item.tambahan),
+          },
+        ],
       });
       saveAction(payload);
     }
   };
 
-  const handleChange = async (item, value) => {
+  const handleChange = async (item, type, value) => {
     const newArr = result.map((p) =>
-      p.idapps === item.idapps ? { ...p, value: value } : p
+      p.idsetting === item.idsetting ? { ...p, [type]: value } : p
     );
     setResult(newArr);
   };
@@ -70,9 +77,9 @@ function Pengaturan() {
       <Wrapper>
         <Topbar />
         <Container>
-          <Sidebar active="setting" />
+          <Sidebar active="setting-all-in" />
           <Content>
-            <PageHeading title="Pengaturan" />
+            <PageHeading title="Pengaturan All In" />
             <div className="row">
               <div className="col-12">
                 <div className="row clearfix">
@@ -89,20 +96,66 @@ function Pengaturan() {
                                 className="list-group-item"
                                 style={{ borderTop: "0px none" }}
                               >
-                                <b>{it.desc}</b>
+                                <b>{it.nmLayanan}</b>
                               </li>
-                              <li className="list-group-item">
+                              <li className="list-group-item d-flex justify-content-between align-items-center">
+                                <b>Ongkir</b>
                                 {it.isEditing ? (
                                   <input
                                     type="text"
-                                    className="form-control"
-                                    value={it.value}
+                                    className="form-control text-right"
+                                    value={it.ongkir}
                                     onChange={(e) =>
-                                      handleChange(it, e.target.value)
+                                      handleChange(it, "ongkir", e.target.value)
                                     }
+                                    style={{ width: "50%" }}
                                   />
                                 ) : (
-                                  <div className="pull-left">{it.value}</div>
+                                  <div className="pull-right">{it.ongkir}</div>
+                                )}
+                              </li>
+                              <li className="list-group-item d-flex justify-content-between align-items-center">
+                                <b>Jarak Tambahan</b>
+                                {it.isEditing ? (
+                                  <input
+                                    type="text"
+                                    className="form-control text-right"
+                                    value={it.jaraktambahan}
+                                    onChange={(e) =>
+                                      handleChange(
+                                        it,
+                                        "jaraktambahan",
+                                        e.target.value
+                                      )
+                                    }
+                                    style={{ width: "50%" }}
+                                  />
+                                ) : (
+                                  <div className="pull-right">
+                                    {it.jaraktambahan}
+                                  </div>
+                                )}
+                              </li>
+                              <li className="list-group-item d-flex justify-content-between align-items-center">
+                                <b>Tambahan</b>
+                                {it.isEditing ? (
+                                  <input
+                                    type="text"
+                                    className="form-control text-right"
+                                    value={it.tambahan}
+                                    onChange={(e) =>
+                                      handleChange(
+                                        it,
+                                        "tambahan",
+                                        e.target.value
+                                      )
+                                    }
+                                    style={{ width: "50%" }}
+                                  />
+                                ) : (
+                                  <div className="pull-right">
+                                    {it.tambahan}
+                                  </div>
                                 )}
                               </li>
                             </ul>
@@ -137,4 +190,4 @@ function Pengaturan() {
   );
 }
 
-export default Pengaturan;
+export default PengaturanAllIn;

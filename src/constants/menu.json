@@ -86,7 +86,7 @@
   {
     "name": "Pengaturan ALL IN",
     "icon": "settings_applications",
-    "to": "AdminSettingsALLIN",
-    "active": "settingallin"
+    "to": "setting-all-in",
+    "active": "setting-all-in"
   }
 ]

@@ -10,6 +10,7 @@ import UpdateVersi from "./UpdateVersi";
 import Voucher from "./Voucher";
 import VoucherCreate from "./VoucherCreate";
 import Pengaturan from "./Pengaturan";
+import PengaturanAllIn from "./PengaturanAllIn";
 
 export {
   SignIn,
@@ -24,4 +25,5 @@ export {
   Voucher,
   VoucherCreate,
   Pengaturan,
+  PengaturanAllIn,
 };
