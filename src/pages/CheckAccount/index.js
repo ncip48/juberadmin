@@ -31,7 +31,7 @@ function CheckAccount() {
         false
       )
     );
-    setResult(res.data.msg);
+    setResult(res?.data?.msg);
   };
 
   return (
@@ -55,7 +55,7 @@ function CheckAccount() {
                     type="warning"
                     onClick={() => checkAction()}
                   />
-                  {result.length !== 0 && (
+                  {result?.length !== 0 && (
                     <>
                       <hr />
                       <div className="alert alert-success">{result}</div>

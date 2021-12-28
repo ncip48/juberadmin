@@ -27,7 +27,7 @@ function Voucher() {
       _fetch(BridgeService.JbDelivery({ key: "allvoucher" }))
     );
     // console.log(res.data.lobj);
-    setResult(res.data.lobj);
+    setResult(res?.data?.lobj);
   };
 
   const deleteAction = async (id) => {

@@ -26,7 +26,7 @@ function Informasi() {
   const getInformation = async () => {
     const res = await dispatch(_fetch(InformationService.getInformasi({})));
     // console.log(res.data.lobj);
-    setResult(res.data.lobj);
+    setResult(res?.data?.lobj);
   };
 
   const deleteAction = async (id) => {

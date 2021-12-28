@@ -26,7 +26,7 @@ function Pengaturan() {
       _fetch(BridgeService.JbDelivery({ key: "allsetting" }))
     );
     let newData = [];
-    let result = res.data.lobj;
+    let result = res?.data?.lobj || [];
     result.map((item) => {
       return newData.push({ ...item, isEditing: false });
     });

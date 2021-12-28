@@ -26,7 +26,7 @@ function PengaturanAllIn() {
       _fetch(BridgeService.JbDelivery({ key: "settingjballin" }))
     );
     let newData = [];
-    let result = res.data.lobj;
+    let result = res?.data?.lobj || [];
     result.map((item) => {
       return newData.push({ ...item, isEditing: false });
     });

@@ -66,7 +66,7 @@ function Broadcast() {
       image: form.image,
       isi: form.isi,
     };
-    if (res.success) toast.success("Berhasil broadcast");
+    if (res?.success) toast.success("Berhasil broadcast");
     await dispatch(
       _fetch(
         InformationService.createInformasi({

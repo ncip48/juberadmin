@@ -49,7 +49,7 @@ function UpdateVersi() {
         })
       )
     );
-    setResult(res.data.message);
+    setResult(res?.data?.message);
     checkVersion();
   };
 
@@ -79,7 +79,7 @@ function UpdateVersi() {
                     type="warning"
                     onClick={() => checkAction()}
                   />
-                  {result.length !== 0 && (
+                  {result?.length !== 0 && (
                     <>
                       <hr />
                       <div className="alert alert-success">{result}</div>
