@@ -17,6 +17,8 @@ import {
   VoucherCreate,
   Pengaturan,
   PengaturanAllIn,
+  BannerPromo,
+  DriverManual,
 } from "./pages";
 import { LoginRoute } from "./components/LoginRoute";
 
@@ -37,6 +39,8 @@ const Routes = () => (
       <PrivateRoute path="/create-voucher" component={VoucherCreate} />
       <PrivateRoute path="/setting" component={Pengaturan} />
       <PrivateRoute path="/setting-all-in" component={PengaturanAllIn} />
+      <PrivateRoute path="/banner-promo" component={BannerPromo} />
+      <PrivateRoute path="/driver-manual" component={DriverManual} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>

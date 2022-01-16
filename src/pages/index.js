@@ -11,6 +11,8 @@ import Voucher from "./Voucher";
 import VoucherCreate from "./VoucherCreate";
 import Pengaturan from "./Pengaturan";
 import PengaturanAllIn from "./PengaturanAllIn";
+import BannerPromo from "./BannerPromo";
+import DriverManual from "./DriverManual";
 
 export {
   SignIn,
@@ -26,4 +28,6 @@ export {
   VoucherCreate,
   Pengaturan,
   PengaturanAllIn,
+  BannerPromo,
+  DriverManual,
 };

@@ -88,5 +88,17 @@
     "icon": "settings_applications",
     "to": "setting-all-in",
     "active": "setting-all-in"
+  },
+  {
+    "name": "Banner Promo",
+    "icon": "broken_image",
+    "to": "banner-promo",
+    "active": "banner-promo"
+  },
+  {
+    "name": "Pilih Driver Manual",
+    "icon": "drive_eta",
+    "to": "driver-manual",
+    "active": "driver-manual"
   }
 ]
