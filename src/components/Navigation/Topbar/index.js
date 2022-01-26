@@ -36,7 +36,7 @@ class Topbar extends Component {
               </div>
             </li>
           </ul> */}
-          <form className="search-form-opened" action="#" method="GET">
+          <div className="search-form-opened">
             <div className="input-group">
               <input
                 type="text"
@@ -44,6 +44,7 @@ class Topbar extends Component {
                 placeholder="Search..."
                 name="query"
                 onChange={(val) => onChange(val.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && onSearch()}
               />
               <span className="input-group-btn search-btn">
                 <a className="btn submit" onClick={onSearch}>
@@ -51,7 +52,7 @@ class Topbar extends Component {
                 </a>
               </span>
             </div>
-          </form>
+          </div>
 
           <a
             className="menu-toggler responsive-toggler"

@@ -49,6 +49,7 @@ const Routes = () => (
       <PrivateRoute path="/list-location" component={ListLokasi} />
       <PrivateRoute path="/list-locmenu" component={ListLokasiMenu} />
       <PrivateRoute path="/create-menu" component={MenuCreate} />
+      <PrivateRoute path="/edit-menu" component={MenuCreate} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>

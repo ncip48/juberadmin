@@ -1,3 +1,5 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -16,8 +18,12 @@ import {
 import { _fetch } from "../../redux/actions/global";
 import { BridgeService, GlobalService } from "../../services";
 import _ from "lodash";
+import { useEffect } from "react";
 
-function MenuCreate({ history }) {
+function MenuCreate({ history, location }) {
+  const item = location?.query?.item;
+  const isEdit = location?.query?.state === "edit";
+  console.log(isEdit);
   const dispatch = useDispatch();
   const [form, setForm] = useState({
     nama: null,
@@ -26,14 +32,28 @@ function MenuCreate({ history }) {
     submenu: null,
     icon: null,
     json: {
-      icon: null,
+      icon: "",
       update: false,
     },
   });
-  const [tambahanKey, setTambahanKey] = useState([]);
-  const [tambahanValue, setTambahanValue] = useState([]);
   const [counter, setCounter] = useState(1);
   const [result, setResult] = useState("");
+
+  useEffect(() => {
+    if (isEdit) {
+      console.log("Old Data", item);
+      setForm({
+        nama: item.nama,
+        status: item.status,
+        nextpage: item.nextpage,
+        submenu: item.submenu,
+        icon: item.icon,
+        json: JSON.parse(item.json),
+      });
+    }
+  }, []);
+
+  console.log(form);
 
   const newJson = _.omit(form.json, "icon");
 
@@ -81,8 +101,6 @@ function MenuCreate({ history }) {
     }, "");
   }
 
-  console.log(form.json);
-
   const uploadImage = async (data) => {
     const res = await dispatch(_fetch(GlobalService.uploadFoto(data)));
     if (!res?.success) return;
@@ -90,22 +108,37 @@ function MenuCreate({ history }) {
   };
 
   const deleteImage = async () => {
-    const res = await dispatch(_fetch(GlobalService.deleteFoto(form?.icon)));
+    const res = await dispatch(
+      _fetch(GlobalService.deleteFoto(form?.json?.icon))
+    );
     if (!res?.success) return;
-    setForm({ ...form, json: { ...form.json, icon: null } });
+    setForm({ ...form, json: { ...form.json, icon: "" } });
   };
 
   const createAction = async () => {
     // console.log(objToString(form.json));
-    const payload = {
-      id: Date.now(),
-      nama: form.nama,
-      status: form.status,
-      nextpage: form.nextpage,
-      submenu: form.submenu,
-      icon: null,
-      json: objToString(form.json),
-    };
+    let payload;
+    if (isEdit) {
+      payload = {
+        id: item.id,
+        nama: form.nama,
+        status: form.status,
+        nextpage: form.nextpage,
+        submenu: form.submenu,
+        icon: null,
+        json: objToString(form.json),
+      };
+    } else {
+      payload = {
+        id: Date.now(),
+        nama: form.nama,
+        status: form.status,
+        nextpage: form.nextpage,
+        submenu: form.submenu,
+        icon: null,
+        json: objToString(form.json),
+      };
+    }
     // console.log(payload);
     const res = await dispatch(
       _fetch(
@@ -121,7 +154,7 @@ function MenuCreate({ history }) {
     }
     toast.success("Berhasil membuat menu");
     // console.log(res);
-    // setResult("Berhasil membuat menu");
+    setResult("Berhasil membuat menu");
     history.goBack();
   };
 
@@ -132,7 +165,7 @@ function MenuCreate({ history }) {
         <Container>
           <Sidebar active="menu" />
           <Content>
-            <PageHeading title="Tambah Menu" />
+            <PageHeading title={isEdit ? "Edit Menu" : "Tambah Menu"} />
             <div className="row">
               <div className="col-12">
                 <Card>
@@ -160,7 +193,7 @@ function MenuCreate({ history }) {
                     placeholder="submenu"
                     value={form.submenu}
                   />
-                  {form.icon == null ? (
+                  {form.json.icon.length === 0 ? (
                     <Input
                       accept="image/*"
                       label="Icon"
@@ -181,7 +214,7 @@ function MenuCreate({ history }) {
                       className="mb-3 d-flex flex-column"
                     >
                       <img
-                        src={form.icon}
+                        src={form.json.icon}
                         alt=""
                         className="img-thumbnail mb-2"
                         style={{

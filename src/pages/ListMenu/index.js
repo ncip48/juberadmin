@@ -65,7 +65,10 @@ function ListMenu() {
                       <Link
                         key={index}
                         className="col-xl-2 col-lg-3 col-md-6 col-sm-12 text-center text-dark"
-                        to={item.to}
+                        to={{
+                          pathname: "/edit-menu",
+                          query: { item, state: "edit" },
+                        }}
                       >
                         <ItemMenu item={item} />
                       </Link>

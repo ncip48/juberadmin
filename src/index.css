@@ -11,3 +11,30 @@ body {
   box-shadow: none;
   -webkit-box-shadow: none;
 } */
+
+div.search-form-opened {
+  float: left;
+  width: 100%;
+  max-width: 400px;
+  background-color: transparent;
+  color: #fff;
+  border-radius: 30px;
+  margin: 12px 0 0 10px;
+  border: 1px solid #bdbdbd;
+}
+
+div.search-form-opened .btn.submit {
+  margin: 0;
+  color: #1e2629;
+}
+
+.header-red div.search-form-opened .btn.submit {
+  color: #fff;
+}
+.header-red .search-form-opened input[type="text"] {
+  color: #fff;
+}
+.header-red div.search-form-opened {
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 0;
+}
