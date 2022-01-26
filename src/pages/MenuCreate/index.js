@@ -58,13 +58,13 @@ function MenuCreate({ history }) {
 
   const handleKeyJson = (index) => (value) => (oldKey) => (val) => {
     delete Object.assign(form.json, {
-      [val.target.value]: form.json[index],
+      [val.target.value.replaceAll(" ", "_")]: form.json[index],
     })[oldKey];
     setForm({
       ...form,
       json: {
         ...form.json,
-        [val.target.value]: value,
+        [val.target.value.replaceAll(" ", "_")]: value,
       },
     });
   };
