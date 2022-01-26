@@ -100,5 +100,17 @@
     "icon": "drive_eta",
     "to": "driver-manual",
     "active": "driver-manual"
+  },
+  {
+    "name": "List Menu",
+    "icon": "menu",
+    "to": "list-menu",
+    "active": "menu"
+  },
+  {
+    "name": "List Lokasi",
+    "icon": "fullscreen",
+    "to": "list-location",
+    "active": "lokasi"
   }
 ]

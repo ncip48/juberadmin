@@ -7,6 +7,10 @@ import { clickMenuOpen } from "../../../redux/actions";
 
 class Topbar extends Component {
   render() {
+    const { onSearch, onChangeSearch } = this.props;
+    const onChange = (val) => {
+      onChangeSearch(val);
+    };
     // const { clickMenuOpen } = this.props;
 
     return (
@@ -39,9 +43,10 @@ class Topbar extends Component {
                 className="form-control"
                 placeholder="Search..."
                 name="query"
+                onChange={(val) => onChange(val.target.value)}
               />
               <span className="input-group-btn search-btn">
-                <a className="btn submit">
+                <a className="btn submit" onClick={onSearch}>
                   <i className="fa fa-search"></i>
                 </a>
               </span>

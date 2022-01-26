@@ -22,6 +22,7 @@ import Wrapper from "./Wrapper";
 import ItemHome from "./ItemHome";
 import Content from "./Content";
 import Card from "./Card";
+import ItemMenu from "./ItemMenu";
 
 export {
   Button,
@@ -48,4 +49,5 @@ export {
   ItemHome,
   Content,
   Card,
+  ItemMenu,
 };

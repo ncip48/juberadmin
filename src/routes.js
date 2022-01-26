@@ -19,6 +19,10 @@ import {
   PengaturanAllIn,
   BannerPromo,
   DriverManual,
+  ListMenu,
+  ListLokasi,
+  ListLokasiMenu,
+  MenuCreate,
 } from "./pages";
 import { LoginRoute } from "./components/LoginRoute";
 
@@ -41,6 +45,10 @@ const Routes = () => (
       <PrivateRoute path="/setting-all-in" component={PengaturanAllIn} />
       <PrivateRoute path="/banner-promo" component={BannerPromo} />
       <PrivateRoute path="/driver-manual" component={DriverManual} />
+      <PrivateRoute path="/list-menu" component={ListMenu} />
+      <PrivateRoute path="/list-location" component={ListLokasi} />
+      <PrivateRoute path="/list-locmenu" component={ListLokasiMenu} />
+      <PrivateRoute path="/create-menu" component={MenuCreate} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>
