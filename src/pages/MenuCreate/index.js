@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import {
   Button,
   Card,
@@ -112,11 +112,16 @@ function MenuCreate({ history }) {
         BridgeService.JbDelivery({
           key: "createmenu",
           payload: JSON.stringify(payload),
-        })
+        }),
+        false
       )
     );
+    if (res.data.code != 200) {
+      return toast.error(res.data.msg);
+    }
+    toast.success("Berhasil membuat menu");
     // console.log(res);
-    setResult("Berhasil membuat menu");
+    // setResult("Berhasil membuat menu");
     history.goBack();
   };
 
