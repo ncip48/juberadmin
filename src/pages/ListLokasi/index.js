@@ -33,7 +33,7 @@ function ListLokasi() {
                           search: `?idlokasi=${item.lokasi}`,
                         }}
                       >
-                        <div className="card circle">
+                        <div className="card">
                           <div className="panel-body">
                             <h6>Lokasi {item.lokasi}</h6>
                           </div>

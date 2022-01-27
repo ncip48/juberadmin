@@ -4,7 +4,7 @@ function ItemMenu({ item }) {
   const parseJson = JSON.parse(item.json || {});
   // console.log(parseJson);
   return (
-    <div className="card circle">
+    <div className="card ">
       <div className="panel-body mt-3">
         <img
           src={parseJson.icon}

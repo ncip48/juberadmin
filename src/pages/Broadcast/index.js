@@ -49,7 +49,7 @@ function Broadcast() {
     if (form.judul.length === 0) return toast.error("Masukkan Judul");
     if (form.isi.length === 0) return toast.error("Masukkan Isi");
     const payload = {
-      topic: isDev ? "devtopic" : "all",
+      topic: "all",
       judul: form.judul,
       msg: form.isi,
       picture: form.image ?? null,
