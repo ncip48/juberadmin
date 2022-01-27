@@ -112,5 +112,11 @@
     "icon": "fullscreen",
     "to": "list-location",
     "active": "lokasi"
+  },
+  {
+    "name": "Warna Aplikasi",
+    "icon": "brush",
+    "to": "list-color",
+    "active": "color"
   }
 ]

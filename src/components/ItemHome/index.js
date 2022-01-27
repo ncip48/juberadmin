@@ -2,7 +2,7 @@ import React from "react";
 
 function ItemHome({ title, icon }) {
   return (
-    <div className="card circle">
+    <div className="card ">
       <div className="panel-body mt-3">
         <i className="material-icons" style={{ fontSize: "2.3rem" }}>
           {icon}
