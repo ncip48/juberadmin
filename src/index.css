@@ -38,3 +38,60 @@ div.search-form-opened .btn.submit {
   background-color: rgba(255, 255, 255, 0.3);
   border: 0;
 }
+
+.menu {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid #cccccc;
+}
+
+.item {
+  padding: 2px 6px;
+  cursor: default;
+}
+
+.item-highlighted {
+  color: white;
+  background-color: #4095bf;
+}
+
+.item-header {
+  background-color: #eeeeee;
+  color: #454545;
+  font-weight: bold;
+}
+
+.no-suggestions {
+  color: #999;
+  padding: 0.5rem;
+}
+
+.suggestions {
+  border: 1px solid #999;
+  border-top-width: 0;
+  list-style: none;
+  margin-top: 0;
+  max-height: 143px;
+  overflow-y: auto;
+  padding-left: 0;
+  width: calc(300px + 1rem);
+  position: absolute;
+  background-color: white;
+}
+
+.suggestions li {
+  padding: 0.5rem;
+}
+
+.suggestion-active,
+.suggestions li:hover {
+  background-color: #e44f56;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.suggestions li:not(:last-of-type) {
+  border-bottom: 1px solid #999;
+}

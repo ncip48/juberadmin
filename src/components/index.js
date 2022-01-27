@@ -23,6 +23,7 @@ import ItemHome from "./ItemHome";
 import Content from "./Content";
 import Card from "./Card";
 import ItemMenu from "./ItemMenu";
+import AutoComplete from "./AutoComplete";
 
 export {
   Button,
@@ -50,4 +51,5 @@ export {
   Content,
   Card,
   ItemMenu,
+  AutoComplete,
 };
