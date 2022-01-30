@@ -26,6 +26,7 @@ import {
   ListColor,
   AddColor,
   MonitorBroadcast,
+  ForceSuccess,
 } from "./pages";
 import { LoginRoute } from "./components/LoginRoute";
 
@@ -56,6 +57,7 @@ const Routes = () => (
       <PrivateRoute path="/list-color" component={ListColor} />
       <PrivateRoute path="/add-color" component={AddColor} />
       <PrivateRoute path="/monitor-broadcast" component={MonitorBroadcast} />
+      <PrivateRoute path="/force-success" component={ForceSuccess} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>

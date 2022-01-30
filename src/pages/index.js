@@ -20,6 +20,7 @@ import MenuCreate from "./MenuCreate";
 import ListColor from "./ListColor";
 import AddColor from "./AddColor";
 import MonitorBroadcast from "./MonitorBroadcast";
+import ForceSuccess from "./ForceSuccess";
 
 export {
   SignIn,
@@ -44,4 +45,5 @@ export {
   ListColor,
   AddColor,
   MonitorBroadcast,
+  ForceSuccess,
 };

@@ -124,5 +124,11 @@
     "icon": "settings_input_antenna",
     "to": "monitor-broadcast",
     "active": "monitor-broadcast"
+  },
+  {
+    "name": "Paksa Sukseskan Transaksi",
+    "icon": "attach_money",
+    "to": "force-success",
+    "active": "force-success"
   }
 ]
