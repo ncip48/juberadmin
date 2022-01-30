@@ -104,20 +104,7 @@ function ListColor() {
                                 <b>{it.idapps}</b>
                               </li>
                               <li className="list-group-item d-flex justify-content-between align-items-center px-3">
-                                {/* <b>Deskripsi</b> */}
-                                {it.isEditing ? (
-                                  <input
-                                    type="text"
-                                    className="form-control text-right"
-                                    value={it.desc}
-                                    onChange={(e) =>
-                                      handleChange(it, "desc", e.target.value)
-                                    }
-                                    style={{ width: "100%" }}
-                                  />
-                                ) : (
-                                  <div className="pull-right">{it.desc}</div>
-                                )}
+                                <div className="pull-right">{it.desc}</div>
                               </li>
                               <li
                                 className="list-group-item d-flex justify-content-between align-items-center px-3"
