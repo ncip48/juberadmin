@@ -88,67 +88,19 @@ function MonitorBroadcast({ history }) {
                                 className="list-group-item"
                                 style={{ borderTop: "0px none" }}
                               >
-                                <b>{it.nmLayanan}</b>
+                                <b>{it[0]}</b>
                               </li>
                               <li className="list-group-item d-flex justify-content-between align-items-center">
-                                <b>Ongkir</b>
-                                {it.isEditing ? (
-                                  <input
-                                    type="text"
-                                    className="form-control text-right"
-                                    value={it.ongkir}
-                                    onChange={(e) =>
-                                      handleChange(it, "ongkir", e.target.value)
-                                    }
-                                    style={{ width: "50%" }}
-                                  />
-                                ) : (
-                                  <div className="pull-right">{it.ongkir}</div>
-                                )}
+                                <b>SIM</b>
+                                <div className="pull-right">{it[1]}</div>
                               </li>
                               <li className="list-group-item d-flex justify-content-between align-items-center">
-                                <b>Jarak Tambahan</b>
-                                {it.isEditing ? (
-                                  <input
-                                    type="text"
-                                    className="form-control text-right"
-                                    value={it.jaraktambahan}
-                                    onChange={(e) =>
-                                      handleChange(
-                                        it,
-                                        "jaraktambahan",
-                                        e.target.value
-                                      )
-                                    }
-                                    style={{ width: "50%" }}
-                                  />
-                                ) : (
-                                  <div className="pull-right">
-                                    {it.jaraktambahan}
-                                  </div>
-                                )}
+                                <b>Nama Driver</b>
+                                <div className="pull-right">{it[2]}</div>
                               </li>
                               <li className="list-group-item d-flex justify-content-between align-items-center">
-                                <b>Tambahan</b>
-                                {it.isEditing ? (
-                                  <input
-                                    type="text"
-                                    className="form-control text-right"
-                                    value={it.tambahan}
-                                    onChange={(e) =>
-                                      handleChange(
-                                        it,
-                                        "tambahan",
-                                        e.target.value
-                                      )
-                                    }
-                                    style={{ width: "50%" }}
-                                  />
-                                ) : (
-                                  <div className="pull-right">
-                                    {it.tambahan}
-                                  </div>
-                                )}
+                                <b>Plat Nomor</b>
+                                <div className="pull-right">{it[3]}</div>
                               </li>
                             </ul>
                           </div>
