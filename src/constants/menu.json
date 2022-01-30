@@ -120,9 +120,9 @@
     "active": "color"
   },
   {
-    "name": "Cek Broadcast",
+    "name": "Monitor Broadcast",
     "icon": "settings_input_antenna",
-    "to": "check-broadcast",
-    "active": "check-broadcast"
+    "to": "monitor-broadcast",
+    "active": "monitor-broadcast"
   }
 ]

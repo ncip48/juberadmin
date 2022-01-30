@@ -18,6 +18,8 @@ import ListLokasi from "./ListLokasi";
 import ListLokasiMenu from "./ListLokasiMenu";
 import MenuCreate from "./MenuCreate";
 import ListColor from "./ListColor";
+import AddColor from "./AddColor";
+import MonitorBroadcast from "./MonitorBroadcast";
 
 export {
   SignIn,
@@ -40,4 +42,6 @@ export {
   ListLokasiMenu,
   MenuCreate,
   ListColor,
+  AddColor,
+  MonitorBroadcast,
 };

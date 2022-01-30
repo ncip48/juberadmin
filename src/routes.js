@@ -24,6 +24,8 @@ import {
   ListLokasiMenu,
   MenuCreate,
   ListColor,
+  AddColor,
+  MonitorBroadcast,
 } from "./pages";
 import { LoginRoute } from "./components/LoginRoute";
 
@@ -52,6 +54,8 @@ const Routes = () => (
       <PrivateRoute path="/create-menu" component={MenuCreate} />
       <PrivateRoute path="/edit-menu" component={MenuCreate} />
       <PrivateRoute path="/list-color" component={ListColor} />
+      <PrivateRoute path="/add-color" component={AddColor} />
+      <PrivateRoute path="/monitor-broadcast" component={MonitorBroadcast} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>

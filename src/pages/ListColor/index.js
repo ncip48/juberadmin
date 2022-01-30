@@ -74,7 +74,7 @@ function ListColor() {
         <Container>
           <Sidebar active="color" />
           <Content>
-            <PageHeading title="Warna Aplikasi" add to="/add-color" />
+            <PageHeading title="Warna Aplikasi" />
             <div className="row">
               <div className="col-12">
                 <div className="row clearfix">
