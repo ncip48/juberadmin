@@ -17,6 +17,7 @@ import ListMenu from "./ListMenu";
 import ListLokasi from "./ListLokasi";
 import ListLokasiMenu from "./ListLokasiMenu";
 import MenuCreate from "./MenuCreate";
+import ListColor from "./ListColor";
 
 export {
   SignIn,
@@ -38,4 +39,5 @@ export {
   ListLokasi,
   ListLokasiMenu,
   MenuCreate,
+  ListColor,
 };

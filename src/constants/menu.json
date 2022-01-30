@@ -115,7 +115,7 @@
   },
   {
     "name": "Warna Aplikasi",
-    "icon": "brush",
+    "icon": "format_color_fill",
     "to": "list-color",
     "active": "color"
   }
