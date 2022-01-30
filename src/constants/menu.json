@@ -118,5 +118,11 @@
     "icon": "format_color_fill",
     "to": "list-color",
     "active": "color"
+  },
+  {
+    "name": "Cek Broadcast",
+    "icon": "settings_input_antenna",
+    "to": "check-broadcast",
+    "active": "check-broadcast"
   }
 ]
