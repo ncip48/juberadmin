@@ -21,6 +21,7 @@ import ListColor from "./ListColor";
 import AddColor from "./AddColor";
 import MonitorBroadcast from "./MonitorBroadcast";
 import ForceSuccess from "./ForceSuccess";
+import ForceCancel from "./ForceCancel";
 
 export {
   SignIn,
@@ -46,4 +47,5 @@ export {
   AddColor,
   MonitorBroadcast,
   ForceSuccess,
+  ForceCancel,
 };

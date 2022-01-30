@@ -130,5 +130,11 @@
     "icon": "attach_money",
     "to": "force-success",
     "active": "force-success"
+  },
+  {
+    "name": "Paksa Gagalkan Transaksi",
+    "icon": "money_off",
+    "to": "force-cancel",
+    "active": "force-cancel"
   }
 ]
