@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import {
@@ -22,7 +22,6 @@ function ForceSuccess() {
     alasan: "",
   });
   const [result, setResult] = useState("");
-  const [version, setVersion] = useState("");
 
   const handleChange = (type) => (val) => {
     setForm({ ...form, [type]: val.target.value });
@@ -43,7 +42,7 @@ function ForceSuccess() {
         })
       )
     );
-    setResult(res?.data?.message);
+    setResult(res?.data?.msg);
   };
 
   return (
@@ -51,9 +50,9 @@ function ForceSuccess() {
       <Wrapper>
         <Topbar />
         <Container>
-          <Sidebar active="update" />
+          <Sidebar active="force-success" />
           <Content>
-            <PageHeading title="Update Versi" />
+            <PageHeading title="Paksa Sukseskan Transaksi" />
             <div className="row">
               <div className="col-12">
                 <Card>

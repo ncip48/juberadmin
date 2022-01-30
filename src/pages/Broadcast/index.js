@@ -27,7 +27,6 @@ function Broadcast() {
     image: "",
   });
   const [result, setResult] = useState("");
-  let isDev = process.env.NODE_ENV === "development" ? true : false;
 
   const handleChange = (type) => (val) => {
     setForm({ ...form, [type]: val.target.value });
