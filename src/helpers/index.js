@@ -127,3 +127,66 @@ export const formatRupiah = (angka) => {
   rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
   return "Rp. " + rupiah;
 };
+
+export const cipher = (salt) => {
+  const textToChars = (text) => text.split("").map((c) => c.charCodeAt(0));
+  const byteHex = (n) => ("0" + Number(n).toString(16)).substr(-2);
+  const applySaltToChar = (code) =>
+    textToChars(salt).reduce((a, b) => a ^ b, code);
+
+  return (text) =>
+    text.split("").map(textToChars).map(applySaltToChar).map(byteHex).join("");
+};
+
+export const decipher = (salt) => {
+  const textToChars = (text) => text.split("").map((c) => c.charCodeAt(0));
+  const applySaltToChar = (code) =>
+    textToChars(salt).reduce((a, b) => a ^ b, code);
+  return (encoded) =>
+    encoded
+      .match(/.{1,2}/g)
+      .map((hex) => parseInt(hex, 16))
+      .map(applySaltToChar)
+      .map((charCode) => String.fromCharCode(charCode))
+      .join("");
+};
+
+export const getJenisDok = (id) => {
+  switch (id) {
+    case "01":
+      return "KTP";
+    case "02":
+      return "SIM";
+    case "03":
+      return "PASSPORT";
+    case "04":
+      return "STNK";
+    case "05":
+      return "BPKB";
+    case "06":
+      return "SKCK";
+    case "07":
+      return "SELFIE";
+    default:
+      return "";
+  }
+};
+
+export const getStatus = (status) => {
+  switch (status) {
+    case 0:
+      return "Tidak Aktif";
+    case 1:
+      return "Aktif";
+    case 2:
+      return "Expired";
+    case 3:
+      return "Tidak Valid (Ditolak)";
+    case 4:
+      return "Terverifikasi";
+    case 5:
+      return "Belum Terverifikasi";
+    default:
+      return null;
+  }
+};

@@ -22,6 +22,8 @@ import AddColor from "./AddColor";
 import MonitorBroadcast from "./MonitorBroadcast";
 import ForceSuccess from "./ForceSuccess";
 import ForceCancel from "./ForceCancel";
+import Verification from "./Verification";
+import VerificationDetails from "./VerificationDetails";
 
 export {
   SignIn,
@@ -48,4 +50,6 @@ export {
   MonitorBroadcast,
   ForceSuccess,
   ForceCancel,
+  Verification,
+  VerificationDetails,
 };
