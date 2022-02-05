@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export const baseUrl = "http://45.77.173.173:9299";
-// export const baseUrl = "https://api.juber.co.id:9300";
+// export const baseUrl = "http://45.77.173.173:9299";
+export const baseUrl = "https://api.juber.co.id:9300";
 export const uuid = "e4351a1d0579f6a0";
 export const baseRequest = axios.create({ baseURL: baseUrl });
 export const uploadRequest = axios.create({ baseURL: "https://juber.co.id" });

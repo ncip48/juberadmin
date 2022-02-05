@@ -30,6 +30,7 @@ import {
   ForceCancel,
   Verification,
   VerificationDetails,
+  CancelAdmin,
 } from "./pages";
 import { LoginRoute } from "./components/LoginRoute";
 
@@ -62,6 +63,7 @@ const Routes = () => (
       <PrivateRoute path="/monitor-broadcast" component={MonitorBroadcast} />
       <PrivateRoute path="/force-success" component={ForceSuccess} />
       <PrivateRoute path="/force-cancel" component={ForceCancel} />
+      <PrivateRoute path="/cancel-admin" component={CancelAdmin} />
       <PrivateRoute path="/verification" component={Verification} />
       <PrivateRoute
         path="/verification-details"
