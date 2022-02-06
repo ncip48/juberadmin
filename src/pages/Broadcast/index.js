@@ -53,7 +53,7 @@ function Broadcast() {
       msg: form.isi,
       picture: form.image ?? null,
       data: {
-        service: "devtopic",
+        service: "all",
         type: "broadcast",
       },
     };
