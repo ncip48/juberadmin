@@ -61,6 +61,10 @@ function MenuCreate({ history, location }) {
     setForm({ ...form, [type]: val.target.value });
   };
 
+  const handleChangeF = (type) => (val) => {
+    setForm({ ...form, [type]: val });
+  };
+
   const tambahJson = () => {
     setForm({
       ...form,
@@ -175,12 +179,37 @@ function MenuCreate({ history, location }) {
                     placeholder="nama"
                     value={form.nama}
                   />
-                  <Input
-                    label="Status"
-                    onChange={handleChange("status")}
-                    placeholder="AKTIF/TIDAK AKTIF"
-                    value={form.status}
-                  />
+                  <div className="form-group">
+                    <label>Status</label>
+                    <div
+                      className="radio"
+                      onClick={() => handleChangeF("status")("AKTIF")}
+                    >
+                      <input
+                        type="radio"
+                        name="status"
+                        id="aktif"
+                        value="AKTIF"
+                        checked={form.status === "AKTIF"}
+                        onChange={handleChangeF("tipe")}
+                      />
+                      <label htmlFor="optionsRadios1">AKTIF</label>
+                    </div>
+                    <div
+                      className="radio"
+                      onClick={() => handleChangeF("status")("TIDAK AKTIF")}
+                    >
+                      <input
+                        type="radio"
+                        name="status"
+                        id="tidakaktif"
+                        value="TIDAK AKTIF"
+                        checked={form.status === "TIDAK AKTIF"}
+                        onChange={handleChangeF("tipe")}
+                      />
+                      <label htmlFor="optionsRadios2">TIDAK AKTIF</label>
+                    </div>
+                  </div>
                   <Input
                     label="Next Page"
                     onChange={handleChange("nextpage")}
