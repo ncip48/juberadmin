@@ -12,6 +12,7 @@ function ItemMenu({ item }) {
           alt="i"
         />
         <h6>{item.nama}</h6>
+        <h6>({item.id})</h6>
       </div>
     </div>
   );
