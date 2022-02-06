@@ -56,6 +56,7 @@ function InformasiCreate({ history }) {
         })
       )
     );
+    // console.log(res);
     setForm({ judul: "", isi: "", image: "" });
     setResult("Berhasil membuat informasi");
     history.goBack();

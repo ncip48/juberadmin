@@ -53,7 +53,7 @@ function Broadcast() {
       msg: form.isi,
       picture: form.image ?? null,
       data: {
-        service: "all",
+        service: "devtopic",
         type: "broadcast",
       },
     };
@@ -66,13 +66,14 @@ function Broadcast() {
       isi: form.isi,
     };
     if (res?.success) toast.success("Berhasil broadcast");
-    await dispatch(
+    const resd = await dispatch(
       _fetch(
         InformationService.createInformasi({
           payload: JSON.stringify(payloadInfo),
         })
       )
     );
+    console.log(resd);
     setForm({ judul: "", isi: "", image: "" });
     setResult("Berhasil membuat informasi");
   };
