@@ -73,7 +73,8 @@ function Broadcast() {
         })
       )
     );
-    console.log(resd);
+    console.log("respon payload informasi", payloadInfo);
+    console.log("respon buat informasi", resd);
     setForm({ judul: "", isi: "", image: "" });
     setResult("Berhasil membuat informasi");
   };

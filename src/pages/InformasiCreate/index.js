@@ -49,14 +49,15 @@ function InformasiCreate({ history }) {
       image: form.image,
       isi: form.isi,
     };
-    await dispatch(
+    const res = await dispatch(
       _fetch(
         InformationService.createInformasi({
           payload: JSON.stringify(payloadInfo),
         })
       )
     );
-    // console.log(res);
+    console.log("respon payload informasi", payloadInfo);
+    console.log("respon buat informasi", res);
     setForm({ judul: "", isi: "", image: "" });
     setResult("Berhasil membuat informasi");
     history.goBack();
