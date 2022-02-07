@@ -12,6 +12,7 @@ import {
 import { formatDate, formatRupiah } from "../../helpers";
 import { _fetch } from "../../redux/actions/global";
 import { BridgeService } from "../../services";
+import { isExpired } from "../../helpers";
 
 function Voucher() {
   const dispatch = useDispatch();
@@ -61,6 +62,24 @@ function Voucher() {
                         key={id}
                       >
                         <div className="card card-topline-yellow">
+                          {isExpired(it.tglexp) && (
+                            <img
+                              src={require("../../assets/img/expired.png")}
+                              alt="expired"
+                              style={{
+                                height: 80,
+                                width: 140,
+                                objectFit: "cover",
+                                margin: "auto",
+                                top: 0,
+                                bottom: 0,
+                                right: 0,
+                                left: 0,
+                                position: "absolute",
+                                zIndex: 99,
+                              }}
+                            />
+                          )}
                           <div className="card-body no-padding height-9 mt-1">
                             <ul className="list-group list-group-unbordered">
                               <li

@@ -1,4 +1,5 @@
 /* eslint-disable eqeqeq */
+import moment from "moment";
 import { toast } from "react-toastify";
 
 export const handleFetchError = (e, source) => {
@@ -188,5 +189,17 @@ export const getStatus = (status) => {
       return "Belum Terverifikasi";
     default:
       return null;
+  }
+};
+
+export const isExpired = (date) => {
+  var end = moment(new Date()); //todays date
+  var now = moment(date); // another date
+  var duration = moment.duration(now.diff(end));
+  var days = duration.asDays();
+  if (days < 0) {
+    return true;
+  } else {
+    return false;
   }
 };
