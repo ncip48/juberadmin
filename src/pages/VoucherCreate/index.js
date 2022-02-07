@@ -24,7 +24,8 @@ function VoucherCreate({ history }) {
     kodepromo: "",
     quota: "",
     diskon: "",
-    tglexp: moment().format("Y-M-D"),
+    tglexp: moment().format("YYYY-MM-DD"),
+    type: "BOLEH_TRX_NOL",
   });
   const [result, setResult] = useState("");
 
@@ -56,7 +57,7 @@ function VoucherCreate({ history }) {
       kodepromo: "",
       quota: "",
       diskon: "",
-      tglexp: moment().format("Y-M-D"),
+      tglexp: moment().format("YYYY-MM-DD"),
     });
     setResult("Berhasil membuat voucher");
     history.goBack();
@@ -103,6 +104,18 @@ function VoucherCreate({ history }) {
                     onChange={handleChange("tglexp")}
                     value={form.tglexp}
                   />
+                  <div className="form-group">
+                    <label>Type</label>
+                    <select
+                      className="form-control"
+                      onChange={handleChange("type")}
+                    >
+                      <option value="BOLEH_TRX_NOL">BOLEH_TRX_NOL</option>
+                      <option value="ONGKIR">ONGKIR</option>
+                      <option value="BARANG">BARANG</option>
+                      <option value="ALL">ALL</option>
+                    </select>
+                  </div>
                   <div className="d-flex justify-content-center align-items-end">
                     <Button
                       title="Submit"

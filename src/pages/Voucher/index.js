@@ -75,6 +75,10 @@ function Voucher() {
                                 <div className="pull-right">{it.kodepromo}</div>
                               </li>
                               <li className="list-group-item">
+                                <b>Type</b>
+                                <div className="pull-right">{it.type}</div>
+                              </li>
+                              <li className="list-group-item">
                                 <b>Diskon</b>
                                 <div className="pull-right">
                                   {formatRupiah(it.diskon)}
