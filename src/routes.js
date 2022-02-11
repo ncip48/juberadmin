@@ -31,6 +31,7 @@ import {
   Verification,
   VerificationDetails,
   CancelAdmin,
+  BonusReferal,
 } from "./pages";
 import { LoginRoute } from "./components/LoginRoute";
 
@@ -65,6 +66,7 @@ const Routes = () => (
       <PrivateRoute path="/force-cancel" component={ForceCancel} />
       <PrivateRoute path="/cancel-admin" component={CancelAdmin} />
       <PrivateRoute path="/verification" component={Verification} />
+      <PrivateRoute path="/bonus-referal" component={BonusReferal} />
       <PrivateRoute
         path="/verification-details"
         component={VerificationDetails}

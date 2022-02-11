@@ -136,5 +136,11 @@
     "icon": "money_off",
     "to": "cancel-admin",
     "active": "cancel-admin"
+  },
+  {
+    "name": "Bonus Referal",
+    "icon": "share",
+    "to": "bonus-referal",
+    "active": "bonus-referal"
   }
 ]

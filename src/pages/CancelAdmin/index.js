@@ -73,7 +73,7 @@ function CancelAdmin() {
       )
     );
     // console.log(payload);
-    // console.log(res.data);
+    console.log(res.data);
     setTrx(res.data.lobj);
   };
 
