@@ -6,4 +6,9 @@ export default {
 
     return socketHost.post(`/notif/topic`, { ...payload }, config);
   },
+  async broadcast(payload) {
+    const config = await generateHeaders(["content-json"]);
+
+    return socketHost.post(`/notif`, { ...payload }, config);
+  },
 };

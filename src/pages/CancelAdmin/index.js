@@ -16,12 +16,13 @@ import {
 } from "../../components";
 import { formatDate } from "../../helpers";
 import { _fetch } from "../../redux/actions/global";
-import { BridgeService } from "../../services";
+import { BridgeService, NotifService } from "../../services";
 
 function CancelAdmin() {
   const dispatch = useDispatch();
   const [form, setForm] = useState({
     kodepesanan: "",
+    tokendriver: "",
     alasan: "",
   });
   const [formSearch, setFormSearch] = useState({
@@ -56,8 +57,23 @@ function CancelAdmin() {
         })
       )
     );
-    // setForm({ driverId: "", trxId: "" });
+    setForm({ kodepesanan: "", alasan: "" });
     setResult(res.data.msg);
+    const payloadNotif = {
+      tokens: [form.tokendriver],
+      judul: "Pesanan dibatalkan",
+      msg: `Pesanan ${form.kodepesanan} dibatalkan admin, alasan ${form.alasan}`,
+      data: {
+        service: "canceladmin",
+        type: "driver",
+        idpesanan: form.kodepesanan,
+      },
+    };
+    console.log(payloadNotif);
+    const resNotif = await dispatch(
+      _fetch(NotifService.broadcast(payloadNotif), false)
+    );
+    console.log(resNotif);
   };
 
   const getTrx = async () => {
@@ -232,6 +248,7 @@ function CancelAdmin() {
                               setForm({
                                 ...form,
                                 kodepesanan: item.kodepesanan,
+                                tokendriver: item?.id_driver?.split("#")[1],
                               });
                               setModal(false);
                             }}
