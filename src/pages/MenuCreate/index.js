@@ -29,6 +29,7 @@ function MenuCreate({ history, location }) {
     nama: null,
     status: null,
     nextpage: null,
+    webview: null,
     submenu: null,
     icon: null,
     json: {
@@ -45,7 +46,8 @@ function MenuCreate({ history, location }) {
       setForm({
         nama: item.nama,
         status: item.status,
-        nextpage: item.nextpage,
+        nextpage: splitNextPage(item.nextpage, "nextpage"),
+        webview: splitNextPage(item.nextpage, "webview"),
         submenu: item.submenu,
         icon: item.icon,
         json: JSON.parse(item.json),
@@ -105,6 +107,36 @@ function MenuCreate({ history, location }) {
     }, "");
   }
 
+  const createNextPage = () => {
+    if (
+      form.webview.length == 0 ||
+      form.webview == null ||
+      form.webview == ""
+    ) {
+      return form.nextpage;
+    } else {
+      return form.nextpage + "#" + form.webview;
+    }
+  };
+
+  const splitNextPage = (item, type = "nextpage") => {
+    if (item.includes("#")) {
+      if (type == "nextpage") {
+        return item.split("#")[0];
+      } else if (type == "webview") {
+        return item.split("#")[1];
+      }
+    } else {
+      if (type == "nextpage") {
+        return item;
+      } else if (type == "webview") {
+        return null;
+      }
+    }
+  };
+
+  console.log(form);
+
   const uploadImage = async (data) => {
     const res = await dispatch(_fetch(GlobalService.uploadFoto(data)));
     if (!res?.success) return;
@@ -127,7 +159,7 @@ function MenuCreate({ history, location }) {
         id: item.id,
         nama: form.nama,
         status: form.status,
-        nextpage: form.nextpage,
+        nextpage: createNextPage(),
         submenu: form.submenu,
         icon: null,
         json: objToString(form.json),
@@ -137,13 +169,13 @@ function MenuCreate({ history, location }) {
         id: Date.now(),
         nama: form.nama,
         status: form.status,
-        nextpage: form.nextpage,
+        nextpage: createNextPage(),
         submenu: form.submenu,
         icon: null,
         json: objToString(form.json),
       };
     }
-    // console.log(payload);
+    console.log(payload);
     const res = await dispatch(
       _fetch(
         BridgeService.JbDelivery({
@@ -215,6 +247,12 @@ function MenuCreate({ history, location }) {
                     onChange={handleChange("nextpage")}
                     placeholder="nextpage"
                     value={form.nextpage}
+                  />
+                  <Input
+                    label="Webview"
+                    onChange={handleChange("webview")}
+                    placeholder="webview"
+                    value={form.webview}
                   />
                   <Input
                     label="Sub Menu"

@@ -42,7 +42,7 @@ function ListMenu() {
         false
       )
     );
-    // console.log(res.data.lobj);
+    console.log(res.data.lobj);
     setResult(res?.data?.lobj);
   };
 
