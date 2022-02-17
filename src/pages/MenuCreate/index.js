@@ -5,17 +5,19 @@ import { useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import {
+  AutoComplete,
   Button,
   Card,
   Container,
   Content,
   Input,
+  Modal,
   PageHeading,
   Sidebar,
   Topbar,
   Wrapper,
 } from "../../components";
-import { _fetch } from "../../redux/actions/global";
+import { _fetch, _fetch_nomsg } from "../../redux/actions/global";
 import { BridgeService, GlobalService } from "../../services";
 import _ from "lodash";
 import { useEffect } from "react";
@@ -39,6 +41,12 @@ function MenuCreate({ history, location }) {
   });
   const [counter, setCounter] = useState(1);
   const [result, setResult] = useState("");
+  const [submenu, setSubmenu] = useState([]);
+  const [resultMenu, setResultMenu] = useState(null);
+  const [modal, setModal] = useState(false);
+
+  const [query, setQuery] = useState("");
+  const [clickQuery, setClickQuery] = useState(null);
 
   useEffect(() => {
     if (isEdit) {
@@ -52,10 +60,55 @@ function MenuCreate({ history, location }) {
         icon: item.icon,
         json: JSON.parse(item.json),
       });
+      getSubmenu();
     }
   }, []);
 
   console.log(form);
+
+  const getSubmenu = async () => {
+    const res = await dispatch(
+      _fetch(
+        GlobalService.getSubmenu({
+          payload: JSON.stringify({ submenu: item?.submenu }),
+        })
+      )
+    );
+    console.log("submenu", res);
+    setSubmenu(res?.data?.lobj);
+  };
+
+  const deleteSubmenu = (item) => {
+    const newSubmenu = submenu.filter((arr) => arr.id !== item.id);
+    setSubmenu(newSubmenu);
+  };
+
+  const addSubmenu = () => {
+    setSubmenu([...submenu, { ...clickQuery }]);
+    console.log(clickQuery);
+  };
+
+  const renderChips = (item) => {
+    return item.length == 0 ? (
+      <span className="mdl-chip mdl-chip--deletable mr-2">
+        <span className="mdl-chip__text">Belum ada submenu</span>
+        <button type="button" className="mdl-chip__action">
+          <i className="material-icons">cancel</i>
+        </button>
+      </span>
+    ) : (
+      <span className="mdl-chip mdl-chip--deletable mr-2" key={item.id}>
+        <span className="mdl-chip__text">{item.nama}</span>
+        <button
+          type="button"
+          className="mdl-chip__action"
+          onClick={() => deleteSubmenu(item)}
+        >
+          <i className="material-icons">cancel</i>
+        </button>
+      </span>
+    );
+  };
 
   const newJson = _.omit(form.json, "icon");
 
@@ -79,7 +132,7 @@ function MenuCreate({ history, location }) {
     let objLama = form.json;
     delete objLama[`${val}`];
     setForm({ ...form, json: { ...objLama } });
-    console.log(objLama);
+    // console.log(objLama);
   };
 
   const handleKeyJson = (index) => (value) => (oldKey) => (val) => {
@@ -109,7 +162,7 @@ function MenuCreate({ history, location }) {
 
   const createNextPage = () => {
     if (
-      form.webview.length == 0 ||
+      form?.webview?.length == 0 ||
       form.webview == null ||
       form.webview == ""
     ) {
@@ -135,7 +188,7 @@ function MenuCreate({ history, location }) {
     }
   };
 
-  console.log(form);
+  console.log("form", form);
 
   const uploadImage = async (data) => {
     const res = await dispatch(_fetch(GlobalService.uploadFoto(data)));
@@ -151,8 +204,33 @@ function MenuCreate({ history, location }) {
     setForm({ ...form, json: { ...form.json, icon: "" } });
   };
 
+  useEffect(() => {
+    getMenuSearch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query]);
+
+  const getMenuSearch = async () => {
+    const res = await dispatch(
+      _fetch_nomsg(
+        BridgeService.JbDelivery({
+          key: "carimenu",
+          payload: JSON.stringify({ nama: query }),
+        }),
+        false
+      )
+    );
+    // console.log(res.data.lobj);
+    setResultMenu(res?.data?.lobj);
+  };
+
   const createAction = async () => {
-    // console.log(objToString(form.json));
+    // const joinedIdSubmenu = submenu
+    //   ?.map(
+    //     (elem, index) =>
+    //       elem.id + String(index < 1 ? "0" + (index + 1) : index + 1)
+    //   )
+    //   .join("#");
+    const joinedIdSubmenu = submenu?.map((elem, index) => elem.id).join("#");
     let payload;
     if (isEdit) {
       payload = {
@@ -160,7 +238,7 @@ function MenuCreate({ history, location }) {
         nama: form.nama,
         status: form.status,
         nextpage: createNextPage(),
-        submenu: form.submenu,
+        submenu: joinedIdSubmenu,
         icon: null,
         json: objToString(form.json),
       };
@@ -170,12 +248,12 @@ function MenuCreate({ history, location }) {
         nama: form.nama,
         status: form.status,
         nextpage: createNextPage(),
-        submenu: form.submenu,
+        submenu: joinedIdSubmenu,
         icon: null,
         json: objToString(form.json),
       };
     }
-    console.log(payload);
+    console.log("payload", payload);
     const res = await dispatch(
       _fetch(
         BridgeService.JbDelivery({
@@ -189,7 +267,7 @@ function MenuCreate({ history, location }) {
       return toast.error(res.data.msg);
     }
     toast.success("Berhasil membuat menu");
-    // console.log(res);
+    console.log(res);
     setResult("Berhasil membuat menu");
     history.goBack();
   };
@@ -254,12 +332,25 @@ function MenuCreate({ history, location }) {
                     placeholder="webview"
                     value={form.webview}
                   />
-                  <Input
+                  {/* <Input
                     label="Sub Menu"
                     onChange={handleChange("submenu")}
                     placeholder="submenu"
                     value={form.submenu}
-                  />
+                  /> */}
+                  <label>Sub Menu</label>
+                  <br />
+                  {submenu?.map((val) => {
+                    return renderChips(val);
+                  })}
+                  <div className="mb-3"></div>
+                  <h5
+                    className="text-dark mt-0 mb-3"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => setModal(true)}
+                  >
+                    + Tambah submenu
+                  </h5>
                   {form.json.icon.length === 0 ? (
                     <Input
                       accept="image/*"
@@ -268,45 +359,49 @@ function MenuCreate({ history, location }) {
                       onChange={(e) => uploadImage(e?.target?.files[0])}
                     />
                   ) : (
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        width: "9.5rem",
-                        padding: 10,
-                        border: "2px solid #d2d6de",
-                        backgroundColor: "rgba(210, 210, 210, 0.25)",
-                        color: "#ffffff",
-                      }}
-                      className="mb-3 d-flex flex-column"
-                    >
-                      <img
-                        src={form.json.icon}
-                        alt=""
-                        className="img-thumbnail mb-2"
-                        style={{
-                          height: "8rem",
-                          width: "8rem",
-                          objectFit: "contain",
-                        }}
-                      />
+                    <div>
+                      <label>Icon</label>
+                      <br />
                       <div
                         style={{
-                          width: "1.5rem",
-                          height: "1.5rem",
-                          borderRadius: 99,
+                          display: "flex",
                           alignItems: "center",
-                          justifyContent: "center",
+                          width: "9.5rem",
+                          padding: 10,
+                          border: "2px solid #d2d6de",
+                          backgroundColor: "rgba(210, 210, 210, 0.25)",
+                          color: "#ffffff",
                         }}
-                        className="text-center d-flex justify-content-center align-items-center"
-                        onClick={() => deleteImage()}
+                        className="mb-3 d-flex flex-column"
                       >
-                        <i
-                          className="material-icons"
-                          style={{ color: "#E44F56", cursor: "pointer" }}
+                        <img
+                          src={form.json.icon}
+                          alt=""
+                          className="img-thumbnail mb-2"
+                          style={{
+                            height: "8rem",
+                            width: "8rem",
+                            objectFit: "contain",
+                          }}
+                        />
+                        <div
+                          style={{
+                            width: "1.5rem",
+                            height: "1.5rem",
+                            borderRadius: 99,
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                          className="text-center d-flex justify-content-center align-items-center"
+                          onClick={() => deleteImage()}
                         >
-                          cancel
-                        </i>
+                          <i
+                            className="material-icons"
+                            style={{ color: "#E44F56", cursor: "pointer" }}
+                          >
+                            cancel
+                          </i>
+                        </div>
                       </div>
                     </div>
                   )}
@@ -349,7 +444,7 @@ function MenuCreate({ history, location }) {
                   </h5>
                   <div className="d-flex justify-content-center align-items-end">
                     <Button
-                      title="Submit"
+                      title={isEdit ? "Simpan" : "Submit"}
                       type="warning"
                       onClick={() => createAction()}
                     />
@@ -371,6 +466,26 @@ function MenuCreate({ history, location }) {
             </div>
           </Content>
         </Container>
+        <Modal show={modal} onHide={() => setModal(false)}>
+          <AutoComplete
+            suggestions={resultMenu}
+            onChangeText={(val) => setQuery(val)}
+            onClickText={(val) => setClickQuery(val)}
+          />
+          <div className="d-flex justify-content-center align-items-end mt-4">
+            <Button
+              title="Tambahkan"
+              type="warning"
+              onClick={() => addSubmenu()}
+            />
+            <Button
+              title="Batal"
+              type="danger"
+              onClick={() => setModal(false)}
+              style={{ width: 130, marginLeft: 10 }}
+            />
+          </div>
+        </Modal>
       </Wrapper>
       <ToastContainer />
     </>

@@ -46,14 +46,14 @@ class Autocomplete extends Component {
   };
 
   onClick = (e) => {
-    const { onChangeText } = this.props;
+    const { onClickText } = this.props;
     this.setState({
       activeSuggestion: 0,
       filteredSuggestions: [],
       showSuggestions: false,
       userInput: e.nama,
     });
-    onChangeText(e);
+    onClickText(e);
   };
 
   onKeyDown = (e) => {
@@ -103,7 +103,7 @@ class Autocomplete extends Component {
     if (showSuggestions && userInput) {
       if (filteredSuggestions.length) {
         suggestionsListComponent = (
-          <ul className="suggestions">
+          <ul className="suggestions" style={{ zIndex: 1 }}>
             {filteredSuggestions.map((suggestion, index) => {
               let className;
 
@@ -118,7 +118,7 @@ class Autocomplete extends Component {
                   key={index}
                   onClick={() => onClick(suggestion)}
                 >
-                  {suggestion.nama}
+                  {suggestion.nama} - ({suggestion.id})
                 </li>
               );
             })}

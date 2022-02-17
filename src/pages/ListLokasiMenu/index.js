@@ -14,7 +14,7 @@ import {
   Wrapper,
   Button,
 } from "../../components";
-import { _fetch } from "../../redux/actions/global";
+import { _fetch, _fetch_nomsg } from "../../redux/actions/global";
 import { BridgeService } from "../../services";
 
 function ListLokasiMenu() {
@@ -25,19 +25,27 @@ function ListLokasiMenu() {
   const { search } = useLocation();
   const lokasi = new URLSearchParams(search).get("idlokasi");
   const [form, setForm] = useState({
-    menu: null,
+    menu: "",
     note: "",
   });
+  const [clickQuery, setClickQuery] = useState(null);
 
   const handleChange = (type) => (val) => {
     setForm({ ...form, [type]: val });
   };
+
+  console.log(form);
 
   useEffect(() => {
     getLokasi();
     getMenu();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    getMenu();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [form.menu]);
 
   const getLokasi = async () => {
     const res = await dispatch(
@@ -55,10 +63,10 @@ function ListLokasiMenu() {
 
   const getMenu = async () => {
     const res = await dispatch(
-      _fetch(
+      _fetch_nomsg(
         BridgeService.JbDelivery({
           key: "carimenu",
-          payload: JSON.stringify({ nama: "" }),
+          payload: JSON.stringify({ nama: form.menu }),
         }),
         false
       )
@@ -71,8 +79,8 @@ function ListLokasiMenu() {
     setResult([
       ...result,
       {
-        id: form.menu.id,
-        nama: form.menu.nama,
+        id: clickQuery.id,
+        nama: clickQuery.nama,
         notes: form.note,
         baru: true,
       },
@@ -154,6 +162,7 @@ function ListLokasiMenu() {
           <AutoComplete
             suggestions={resultMenu}
             onChangeText={(val) => handleChange("menu")(val)}
+            onClickText={(val) => setClickQuery(val)}
           />
           <div className="mt-4">
             <Input

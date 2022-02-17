@@ -1,4 +1,4 @@
-import { generateHeaders, uploadRequest } from "../config";
+import { baseRequest, generateHeaders, uploadRequest, uuid } from "../config";
 
 export default {
   async uploadFoto(payload) {
@@ -17,5 +17,18 @@ export default {
     formData.append("image", payload);
 
     return uploadRequest.post(`/storage/api/delete_image`, formData, config);
+  },
+
+  async getSubmenu(payload) {
+    const config = await generateHeaders([
+      "authorization",
+      "irsauth",
+      "content-json",
+    ]);
+    return baseRequest.post(
+      `/apps/jbdelivery/post`,
+      { ...payload, uuid, key: "admingetsubmenu" },
+      config
+    );
   },
 };
