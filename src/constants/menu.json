@@ -108,7 +108,7 @@
     "active": "menu"
   },
   {
-    "name": "List Lokasi",
+    "name": "Set Lokasi Menu",
     "icon": "fullscreen",
     "to": "list-location",
     "active": "lokasi"

@@ -81,7 +81,7 @@ function ListLokasiMenu() {
       {
         id: clickQuery.id,
         nama: clickQuery.nama,
-        notes: form.note,
+        notes: form.note.length === 0 ? null : form.note,
         baru: true,
       },
     ]);
