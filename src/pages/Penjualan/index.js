@@ -225,28 +225,18 @@ function Penjualan() {
                               className="paginate_button page-item previous disabled"
                               id="tableExport_previous"
                             >
-                              <a
-                                href="#"
-                                aria-controls="tableExport"
-                                data-dt-idx="0"
-                                tabindex="0"
-                                className="page-link"
-                              >
-                                Sebelumnya
-                              </a>
+                              <a className="page-link">Sebelumnya</a>
                             </li>
-                            {[...Array(totalPage).keys()].map((item) => {
+                            {[...Array(totalPage).keys()].map((item, index) => {
                               return (
                                 <li
+                                  key={index}
                                   className={`paginate_button page-item ${
                                     item + 1 === page ? "active" : ""
                                   } `}
                                 >
                                   <a
                                     onClick={() => setPage(item + 1)}
-                                    aria-controls="tableExport"
-                                    data-dt-idx="1"
-                                    tabindex="0"
                                     className="page-link"
                                   >
                                     {item + 1}
@@ -258,15 +248,7 @@ function Penjualan() {
                               className="paginate_button page-item next"
                               id="tableExport_next"
                             >
-                              <a
-                                href="#"
-                                aria-controls="tableExport"
-                                data-dt-idx="3"
-                                tabindex="0"
-                                className="page-link"
-                              >
-                                Selanjutnya
-                              </a>
+                              <a className="page-link">Selanjutnya</a>
                             </li>
                           </ul>
                         </div>
