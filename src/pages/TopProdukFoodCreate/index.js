@@ -37,7 +37,11 @@ function TopProdukFoodCreate({ history, location }) {
     id: "",
     store: {
       id: "",
-      name: "",
+      nama: "",
+    },
+    barang: {
+      id: "",
+      nama: "",
     },
     date: dateObject.addDays(2),
   });
@@ -59,12 +63,16 @@ function TopProdukFoodCreate({ history, location }) {
     if (isEdit) {
       console.log("Old Data", item);
       setForm({
-        id: item.topmerchant_id,
+        id: item.id,
         store: {
-          id: item.id,
-          name: item.store_name,
+          id: item.toko.id,
+          nama: item.toko.nama,
         },
-        date: formatDate(item.topmerchant_expired_at, "year-month-date"),
+        barang: {
+          id: item.barang.id,
+          nama: item.barang.nama,
+        },
+        date: formatDate(item.expired_at, "year-month-date"),
       });
     }
   }, []);
@@ -77,14 +85,13 @@ function TopProdukFoodCreate({ history, location }) {
 
     if (isEdit) {
       payload = {
-        app_id: form.id,
-        store_id: form.store.id,
-        date: formatDate(form.date, "year-month-date"),
+        id_produk: form.barang.id,
+        expired_at: formatDate(form.date, "year-month-date"),
       };
       res = await dispatch(
         _fetch(
           BridgeService.JbMarket({
-            key: "store/topmerchant/update",
+            key: "jbfood/recommend/patch",
             method: "post",
             payload: JSON.stringify(payload),
           })
@@ -92,13 +99,13 @@ function TopProdukFoodCreate({ history, location }) {
       );
     } else {
       payload = {
-        store_id: form.store.id,
-        date: formatDate(form.date, "year-month-date"),
+        id_produk: form.barang.id,
+        expired_at: formatDate(form.date, "year-month-date"),
       };
       res = await dispatch(
         _fetch(
           BridgeService.JbMarket({
-            key: "store/topmercha00nt/create",
+            key: "jbfood/recommend/patch",
             method: "post",
             payload: JSON.stringify(payload),
           })
@@ -111,6 +118,10 @@ function TopProdukFoodCreate({ history, location }) {
         id: "",
         name: "",
       },
+      barang: {
+        id: "",
+        nama: "",
+      },
       date: dateObject.addDays(2),
     });
     // console.log(res.data)
@@ -122,14 +133,14 @@ function TopProdukFoodCreate({ history, location }) {
     const res = await dispatch(
       _fetch(
         BridgeService.JbMarket({
-          key: "store/search",
-          method: "post",
-          payload: JSON.stringify({ search: formSearch.query }),
+          key: "jbfood/search/admin",
+          method: "get",
+          payload: JSON.stringify({ id: formSearch.query }),
         })
       )
     );
     // console.log(payload);
-    // console.log(res.data);
+    console.log(res.data);
     setTrx(res.data.data);
   };
 
@@ -140,27 +151,42 @@ function TopProdukFoodCreate({ history, location }) {
         <Container>
           <Sidebar active="topmerchant" />
           <Content>
-            <PageHeading title="Tambah Top Merchant" />
+            <PageHeading
+              title={isEdit ? "Edit Top Produk Food" : "Tambah Top Produk Food"}
+            />
             <div className="row">
               <div className="col-12">
                 <Card>
-                  <div onClick={() => setModal(true)}>
+                  <div onClick={() => (isEdit ? null : setModal(true))}>
                     <Input
-                      label="Nama Toko"
+                      label="Produk Food"
                       onChange={handleChange("isi")}
                       value={
-                        form.store.id === ""
-                          ? "Pilih Nama Toko"
-                          : form.store.name
+                        form.barang.id === ""
+                          ? "Pilih Produk Food"
+                          : form.barang.nama
                       }
                       style={{
-                        width: "20%",
+                        width: "50%",
                         cursor: "pointer",
                         caretColor: "transparent",
                       }}
                       readOnly
                     />
                   </div>
+                  {isEdit && (
+                    <Input
+                      label="Nama Toko"
+                      onChange={handleChange("isi")}
+                      value={form.store.nama}
+                      style={{
+                        width: "50%",
+                        cursor: "pointer",
+                        caretColor: "transparent",
+                      }}
+                      readOnly
+                    />
+                  )}
                   <Input
                     label="Expire"
                     onChange={handleChange("date")}
@@ -195,7 +221,7 @@ function TopProdukFoodCreate({ history, location }) {
         <Modal show={modal} onHide={() => setModal(false)}>
           <div>
             <Input
-              label="Cari Toko"
+              label="Cari Produk Food"
               onChange={handleChangeSearch("query")}
               placeholder="Nama Toko"
               value={formSearch.query}
@@ -225,7 +251,7 @@ function TopProdukFoodCreate({ history, location }) {
                                 style={{ fontWeight: "bold" }}
                                 className="mr-3"
                               >
-                                {item.store_name}
+                                {item.nama}
                               </h5>
                             </div>
                             <h6 style={{ marginTop: 0 }}>{item.nopol}</h6>
@@ -237,9 +263,9 @@ function TopProdukFoodCreate({ history, location }) {
                             onClick={() => {
                               setForm({
                                 ...form,
-                                store: {
+                                barang: {
                                   id: item.id,
-                                  name: item.store_name,
+                                  nama: item.nama,
                                 },
                               });
                               setModal(false);
