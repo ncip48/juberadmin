@@ -38,6 +38,7 @@ import {
   TopMarketCreate,
   TopProdukFood,
   TopProdukFoodCreate,
+  Penjualan,
 } from "./pages";
 import { LoginRoute } from "./components/LoginRoute";
 
@@ -91,6 +92,7 @@ const Routes = () => (
         path="/edit-top-product-food"
         component={TopProdukFoodCreate}
       />
+      <PrivateRoute path="/sales" component={Penjualan} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>

@@ -32,6 +32,7 @@ import TopMarket from "./TopMarket";
 import TopMarketCreate from "./TopMarketCreate";
 import TopProdukFood from "./TopProdukFood";
 import TopProdukFoodCreate from "./TopProdukFoodCreate";
+import Penjualan from "./Penjualan";
 
 export {
   SignIn,
@@ -68,4 +69,5 @@ export {
   TopMarketCreate,
   TopProdukFood,
   TopProdukFoodCreate,
+  Penjualan,
 };

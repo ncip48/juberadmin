@@ -14,7 +14,7 @@
   {
     "name": "Penjualan",
     "icon": "shopping_basket",
-    "to": "ProdukAdmin",
+    "to": "sales",
     "active": "penjualan"
   },
   {
