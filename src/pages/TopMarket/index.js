@@ -28,7 +28,7 @@ function TopMarket() {
       _fetch(
         BridgeService.JbMarket({
           key: "store/topmerchant",
-          type: "get",
+          method: "get",
         })
       )
     );
@@ -37,16 +37,16 @@ function TopMarket() {
   };
 
   const deleteAction = async (id) => {
-    await dispatch(
+    const res = await dispatch(
       _fetch(
         BridgeService.JbMarket({
           key: "store/topmerchant/destroy",
-          type: "post",
+          method: "POST",
           payload: JSON.stringify({ app_id: id }),
         })
       )
     );
-    // console.log(res.data.lobj);
+    console.log(res.data);
     getTop();
   };
 
@@ -55,7 +55,7 @@ function TopMarket() {
       <Wrapper>
         <Topbar />
         <Container>
-          <Sidebar active="top-merchant" />
+          <Sidebar active="topmerchant" />
           <Content>
             <PageHeading title="Top Marketplace" add to="/create-top-market" />
             <div className="row">
@@ -109,15 +109,15 @@ function TopMarket() {
                             <Link
                               className="btn btn-tbl-edit btn-xs mr-2"
                               to={{
-                                pathname: "/edit-information",
-                                query: { item: it },
+                                pathname: "/edit-top-market",
+                                query: { item: it, state: "edit" },
                               }}
                             >
                               <i className="fa fa-pencil"></i>
                             </Link>
                             <div
                               className="btn btn-tbl-delete btn-xs"
-                              onClick={() => deleteAction(it.id)}
+                              onClick={() => deleteAction(it.topmerchant_id)}
                             >
                               <i className="fa fa-trash-o "></i>
                             </div>
