@@ -56,7 +56,7 @@
   {
     "name": "Top Merchant/Produk",
     "icon": "store",
-    "to": "List Top Merchant",
+    "to": "list-menu-top",
     "active": "topmerchant"
   },
   {

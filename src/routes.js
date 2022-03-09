@@ -33,6 +33,7 @@ import {
   CancelAdmin,
   BonusReferal,
   UpdateUser,
+  ListMenuTop,
 } from "./pages";
 import { LoginRoute } from "./components/LoginRoute";
 
@@ -73,6 +74,7 @@ const Routes = () => (
         path="/verification-details"
         component={VerificationDetails}
       />
+      <PrivateRoute path="/list-menu-top" component={ListMenuTop} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>
