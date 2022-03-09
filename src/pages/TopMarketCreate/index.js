@@ -1,7 +1,8 @@
 /* eslint-disable no-extend-native */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import {
   Button,
@@ -27,7 +28,10 @@ Date.prototype.addDays = function (days) {
 
 const dateObject = new Date();
 
-function TopMarketCreate({ history }) {
+function TopMarketCreate({ history, location }) {
+  const item = location?.query?.item;
+  const isEdit = location?.query?.state === "edit";
+
   const dispatch = useDispatch();
   const [form, setForm] = useState({
     id: "",
@@ -51,22 +55,56 @@ function TopMarketCreate({ history }) {
     setFormSearch({ ...formSearch, [type]: val.target.value });
   };
 
+  useEffect(() => {
+    if (isEdit) {
+      console.log("Old Data", item);
+      setForm({
+        id: item.topmerchant_id,
+        store: {
+          id: item.id,
+          name: item.store_name,
+        },
+        date: formatDate(item.topmerchant_expired_at, "year-month-date"),
+      });
+    }
+  }, []);
+
   const saveAction = async () => {
     if (form.date.length === 0) return toast.error("Masukkan Tanggal");
     if (form.store.id.length === 0) return toast.error("Pilih Toko");
-    const payload = {
-      store_id: form.store.id,
-      date: formatDate(form.date, "year-month-date"),
-    };
-    const res = await dispatch(
-      _fetch(
-        BridgeService.JbMarket({
-          key: "store/topmerchant/create",
-          method: "post",
-          payload: JSON.stringify(payload),
-        })
-      )
-    );
+
+    let payload, res;
+
+    if (isEdit) {
+      payload = {
+        app_id: form.id,
+        store_id: form.store.id,
+        date: formatDate(form.date, "year-month-date"),
+      };
+      res = await dispatch(
+        _fetch(
+          BridgeService.JbMarket({
+            key: "store/topmerchant/update",
+            method: "post",
+            payload: JSON.stringify(payload),
+          })
+        )
+      );
+    } else {
+      payload = {
+        store_id: form.store.id,
+        date: formatDate(form.date, "year-month-date"),
+      };
+      res = await dispatch(
+        _fetch(
+          BridgeService.JbMarket({
+            key: "store/topmerchant/create",
+            method: "post",
+            payload: JSON.stringify(payload),
+          })
+        )
+      );
+    }
     setForm({
       id: "",
       store: {
@@ -126,13 +164,13 @@ function TopMarketCreate({ history }) {
                   <Input
                     label="Expire"
                     onChange={handleChange("date")}
-                    placeholder="Sys Error"
+                    placeholder="Tanggal"
                     value={form.date}
                     type="date"
                   />
                   <div className="d-flex justify-content-center align-items-end">
                     <Button
-                      title="Submit"
+                      title={isEdit ? "Update" : "Submit"}
                       type="warning"
                       onClick={() => saveAction()}
                     />
@@ -223,4 +261,4 @@ function TopMarketCreate({ history }) {
   );
 }
 
-export default TopMarketCreate;
+export default withRouter(TopMarketCreate);
