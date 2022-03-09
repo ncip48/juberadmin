@@ -26,6 +26,7 @@ import Verification from "./Verification";
 import VerificationDetails from "./VerificationDetails";
 import CancelAdmin from "./CancelAdmin";
 import BonusReferal from "./BonusReferal";
+import UpdateUser from "./UpdateUser";
 
 export {
   SignIn,
@@ -56,4 +57,5 @@ export {
   VerificationDetails,
   CancelAdmin,
   BonusReferal,
+  UpdateUser,
 };

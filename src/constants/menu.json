@@ -126,7 +126,7 @@
     "active": "monitor-broadcast"
   },
   {
-    "name": "Paksa Sukseskan Transaksi",
+    "name": "Success Admin",
     "icon": "attach_money",
     "to": "force-success",
     "active": "force-success"
@@ -142,5 +142,11 @@
     "icon": "share",
     "to": "bonus-referal",
     "active": "bonus-referal"
+  },
+  {
+    "name": "Update User",
+    "icon": "swap_vert",
+    "to": "update-user",
+    "active": "update-user"
   }
 ]
