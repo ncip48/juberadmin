@@ -98,7 +98,7 @@ function TopMarketCreate({ history, location }) {
       res = await dispatch(
         _fetch(
           BridgeService.JbMarket({
-            key: "store/topmerchant/create",
+            key: "store/topmercha00nt/create",
             method: "post",
             payload: JSON.stringify(payload),
           })
