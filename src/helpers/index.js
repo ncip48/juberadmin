@@ -203,3 +203,14 @@ export const isExpired = (date) => {
     return false;
   }
 };
+
+export const fckingDateDiff = (date) => {
+  var end = moment(new Date()); //todays date
+  var now = moment(date); // another date
+  var duration = moment.duration(now.diff(end));
+  var days = duration.asDays();
+  var month = duration.asMonths();
+  if (days <= 0) return "0 Hari";
+  if (days > 30) return Math.floor(month) + " Bulan";
+  return Math.floor(days) + " Hari";
+};

@@ -14,11 +14,11 @@ function ListMenuTop() {
   const result = [
     {
       name: "Marketplace",
-      to: "edit-top-market",
+      to: "top-market",
     },
     {
       name: "Produk Food",
-      to: "edit-top-food",
+      to: "top-food",
     },
   ];
   return (

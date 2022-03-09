@@ -34,6 +34,7 @@ import {
   BonusReferal,
   UpdateUser,
   ListMenuTop,
+  TopMarket,
 } from "./pages";
 import { LoginRoute } from "./components/LoginRoute";
 
@@ -75,6 +76,7 @@ const Routes = () => (
         component={VerificationDetails}
       />
       <PrivateRoute path="/list-menu-top" component={ListMenuTop} />
+      <PrivateRoute path="/top-market" component={TopMarket} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>

@@ -28,6 +28,7 @@ import CancelAdmin from "./CancelAdmin";
 import BonusReferal from "./BonusReferal";
 import UpdateUser from "./UpdateUser";
 import ListMenuTop from "./ListMenuTop";
+import TopMarket from "./TopMarket";
 
 export {
   SignIn,
@@ -60,4 +61,5 @@ export {
   BonusReferal,
   UpdateUser,
   ListMenuTop,
+  TopMarket,
 };
