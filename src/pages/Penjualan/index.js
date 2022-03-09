@@ -89,17 +89,7 @@ function Penjualan() {
   useEffect(() => {
     getSales();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    getSales();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state]);
-
-  useEffect(() => {
-    getSales();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+  }, [state, page]);
 
   const getSales = async () => {
     const { key, type } = selectType(state.status);
