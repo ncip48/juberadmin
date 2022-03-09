@@ -18,7 +18,7 @@ function ListMenuTop() {
     },
     {
       name: "Produk Food",
-      to: "top-food",
+      to: "top-product-food",
     },
   ];
   return (

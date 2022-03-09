@@ -36,6 +36,7 @@ import {
   ListMenuTop,
   TopMarket,
   TopMarketCreate,
+  TopProdukFood,
 } from "./pages";
 import { LoginRoute } from "./components/LoginRoute";
 
@@ -80,6 +81,12 @@ const Routes = () => (
       <PrivateRoute path="/top-market" component={TopMarket} />
       <PrivateRoute path="/create-top-market" component={TopMarketCreate} />
       <PrivateRoute path="/edit-top-market" component={TopMarketCreate} />
+      <PrivateRoute path="/top-product-food" component={TopProdukFood} />
+      <PrivateRoute
+        path="/create-top-product-food"
+        component={TopMarketCreate}
+      />
+      <PrivateRoute path="/edit-top-product-food" component={TopMarketCreate} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>
