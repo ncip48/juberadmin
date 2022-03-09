@@ -116,7 +116,7 @@ function TopProdukFood() {
                             <Link
                               className="btn btn-tbl-edit btn-xs mr-2"
                               to={{
-                                pathname: "/edit-top-market",
+                                pathname: "/edit-top-product-food",
                                 query: { item: it, state: "edit" },
                               }}
                             >
