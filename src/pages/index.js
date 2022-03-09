@@ -31,6 +31,7 @@ import ListMenuTop from "./ListMenuTop";
 import TopMarket from "./TopMarket";
 import TopMarketCreate from "./TopMarketCreate";
 import TopProdukFood from "./TopProdukFood";
+import TopProdukFoodCreate from "./TopProdukFoodCreate";
 
 export {
   SignIn,
@@ -66,4 +67,5 @@ export {
   TopMarket,
   TopMarketCreate,
   TopProdukFood,
+  TopProdukFoodCreate,
 };

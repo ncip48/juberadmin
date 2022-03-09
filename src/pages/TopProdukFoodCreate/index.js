@@ -28,7 +28,7 @@ Date.prototype.addDays = function (days) {
 
 const dateObject = new Date();
 
-function TopMarketCreate({ history, location }) {
+function TopProdukFoodCreate({ history, location }) {
   const item = location?.query?.item;
   const isEdit = location?.query?.state === "edit";
 
@@ -140,9 +140,7 @@ function TopMarketCreate({ history, location }) {
         <Container>
           <Sidebar active="topmerchant" />
           <Content>
-            <PageHeading
-              title={isEdit ? "Edit Top Market" : "Tambah Top Market"}
-            />
+            <PageHeading title="Tambah Top Merchant" />
             <div className="row">
               <div className="col-12">
                 <Card>
@@ -263,4 +261,4 @@ function TopMarketCreate({ history, location }) {
   );
 }
 
-export default withRouter(TopMarketCreate);
+export default withRouter(TopProdukFoodCreate);
