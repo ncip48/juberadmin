@@ -10,9 +10,9 @@ import {
   Topbar,
   Wrapper,
 } from "../../components";
-import { batasiKata, fckingDateDiff, formatDate } from "../../helpers";
+import { fckingDateDiff, formatDate } from "../../helpers";
 import { _fetch } from "../../redux/actions/global";
-import { BridgeService, InformationService } from "../../services";
+import { BridgeService } from "../../services";
 
 function TopMarket() {
   const dispatch = useDispatch();
