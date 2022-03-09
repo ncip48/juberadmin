@@ -96,7 +96,7 @@ function TopMarket() {
                           </div>
                           <div
                             className="vehicle-box"
-                            style={{ textAlign: "justify", minHeight: 85 }}
+                            style={{ textAlign: "justify" }}
                           >
                             Expired :{" "}
                             {formatDate(
