@@ -19,11 +19,11 @@ function TopMarket() {
   const [result, setResult] = useState(null);
 
   useEffect(() => {
-    getInformation();
+    getTop();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getInformation = async () => {
+  const getTop = async () => {
     const res = await dispatch(
       _fetch(
         BridgeService.JbMarket({
@@ -39,11 +39,15 @@ function TopMarket() {
   const deleteAction = async (id) => {
     await dispatch(
       _fetch(
-        InformationService.deleteInformasi({ payload: JSON.stringify({ id }) })
+        BridgeService.JbMarket({
+          key: "store/topmerchant/destroy",
+          type: "post",
+          payload: JSON.stringify({ app_id: id }),
+        })
       )
     );
     // console.log(res.data.lobj);
-    getInformation();
+    getTop();
   };
 
   return (
