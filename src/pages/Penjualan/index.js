@@ -126,7 +126,7 @@ function Penjualan() {
         <Container>
           <Sidebar active="penjualan" />
           <Content>
-            <PageHeading title="Penjualan" add to="/create-information" />
+            <PageHeading title="Penjualan" />
             <div className="row">
               <div className="col-12">
                 <div className="borderBox light bordered card-box">
