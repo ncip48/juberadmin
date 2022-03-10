@@ -195,7 +195,7 @@ function Penjualan() {
                                   >
                                     {formatDate(
                                       item.created_at,
-                                      "date/month/year hour:minute"
+                                      "date monthName year hour:minute"
                                     )}
                                   </div>
                                 </div>
