@@ -4135,7 +4135,8 @@ span.notify {
 .tabbable-line > .nav-tabs > li a.active,
 .borderBox .tabbable-line > .nav-tabs > li a.active {
   background: 0 0;
-  border-bottom: 4px solid #36c6d3;
+  /* border-bottom: 4px solid #36c6d3; */
+  border-bottom: 4px solid #e44f56;
   position: relative;
 }
 .tabbable-line > .nav-tabs > li.active > a {

@@ -1,22 +1,15 @@
 import { getMessaging, getToken as T, onMessage } from "firebase/messaging";
 import { initializeApp } from "firebase/app";
 import "firebase/messaging";
-import {
-  apiKey,
-  appId,
-  authDomain,
-  messagingSenderId,
-  projectId,
-  storageBucket,
-} from "./constant";
 
 var firebaseConfig = {
-  apiKey: apiKey,
-  authDomain: authDomain,
-  projectId: projectId,
-  storageBucket: storageBucket,
-  messagingSenderId: messagingSenderId,
-  appId: appId,
+  apiKey: "AIzaSyAQ04xo9VnREHiCvLXDXJSLzad3BjYkq5I",
+  authDomain: "juberdelivery-01.firebaseapp.com",
+  projectId: "juberdelivery-01",
+  storageBucket: "juberdelivery-01.appspot.com",
+  messagingSenderId: "402879309111",
+  appId: "1:402879309111:web:8755386e1673271056e6b2",
+  measurementId: "G-R6BD59G7PL",
 };
 
 initializeApp(firebaseConfig);
@@ -25,7 +18,7 @@ const messaging = getMessaging();
 export const getToken = (setTokenFound) => {
   return T(messaging, {
     vapidKey:
-      "BH97plGjFleE6fvFuH_08jfyKG4GTXlZg4tdUcUAwwjOjL0xSPoKAdruBMhW0Qw9G6f7UvaL6yr1VyNbkUvjj8I",
+      "BNLH6nTs3DFoYOFIdw8NmqqnGrsdlMkBAhGbkA8RWbv8ikUXMcdLk4rRuYu4HpinfjJPDxjYh2xqIwGcji9GJXg",
   })
     .then((currentToken) => {
       if (currentToken) {
@@ -50,6 +43,7 @@ export const getToken = (setTokenFound) => {
 export const onMessageListener = () =>
   new Promise((resolve) => {
     onMessage(messaging, (payload) => {
+      console.log("from front", payload);
       resolve(payload);
     });
   });

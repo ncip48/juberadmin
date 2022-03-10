@@ -12,7 +12,7 @@ import {
   Topbar,
   Wrapper,
 } from "../../components";
-import { formatDate } from "../../helpers";
+import { cipher, formatDate } from "../../helpers";
 import { _fetch } from "../../redux/actions/global";
 import { BridgeService } from "../../services";
 
@@ -32,6 +32,8 @@ function Penjualan() {
   const [state, setState] = useState(tabs[0]);
   const [totalPage, setTotalPage] = useState(0);
   const [page, setPage] = useState(1);
+
+  const enc = cipher("akuimuet");
 
   const selectType = (id) => {
     switch (id) {
@@ -148,57 +150,64 @@ function Penjualan() {
                                 className="col-lg-3 col-md-6 col-12 col-sm-6"
                                 key={id}
                               >
-                                <div className="card blogThumb">
-                                  <div
-                                    className="thumb-center"
-                                    style={{ backgroundColor: "lightgrey" }}
-                                  >
-                                    <img
-                                      className="img-responsive"
-                                      alt="user"
-                                      src={
-                                        item.body[0].item.picture ??
-                                        "https://trello-attachments.s3.amazonaws.com/5f54594b43b5dd5579bc4655/59x60/6272fbd8a05d0a48bf081f2465ac95f0/Frame_%287%29.png"
-                                      }
+                                <Link
+                                  to={{
+                                    pathname: `/detail-sales`,
+                                    search: `?id=${enc(JSON.stringify(item))}`,
+                                  }}
+                                >
+                                  <div className="card blogThumb">
+                                    <div
+                                      className="thumb-center"
+                                      style={{ backgroundColor: "lightgrey" }}
+                                    >
+                                      <img
+                                        className="img-responsive"
+                                        alt="user"
+                                        src={
+                                          item.body[0].item.picture ??
+                                          "https://trello-attachments.s3.amazonaws.com/5f54594b43b5dd5579bc4655/59x60/6272fbd8a05d0a48bf081f2465ac95f0/Frame_%287%29.png"
+                                        }
+                                        style={{
+                                          height: "9rem",
+                                          objectFit: "contain",
+                                        }}
+                                      />
+                                    </div>
+                                    <div
+                                      className="vehicle-name bg-b-danger"
                                       style={{
-                                        height: "9rem",
-                                        objectFit: "contain",
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignContent: "center",
+                                        flexWrap: "wrap",
                                       }}
-                                    />
-                                  </div>
-                                  <div
-                                    className="vehicle-name bg-b-danger"
-                                    style={{
-                                      display: "flex",
-                                      justifyContent: "center",
-                                      alignContent: "center",
-                                      flexWrap: "wrap",
-                                    }}
-                                  >
-                                    <div style={{ fontSize: 18 }}>
-                                      {item.profile.name ?? "Error"}
+                                    >
+                                      <div style={{ fontSize: 18 }}>
+                                        {item.profile.name ?? "Error"}
+                                      </div>
+                                    </div>
+                                    <div
+                                      className="vehicle-box"
+                                      style={{
+                                        textAlign: "justify",
+                                      }}
+                                    >
+                                      Produk {state.title}
+                                    </div>
+                                    <div
+                                      className="vehicle-box"
+                                      style={{
+                                        textAlign: "justify",
+                                      }}
+                                    >
+                                      {formatDate(
+                                        item.created_at,
+                                        "date monthName year hour:minute"
+                                      )}
                                     </div>
                                   </div>
-                                  <div
-                                    className="vehicle-box"
-                                    style={{
-                                      textAlign: "justify",
-                                    }}
-                                  >
-                                    Produk {state.title}
-                                  </div>
-                                  <div
-                                    className="vehicle-box"
-                                    style={{
-                                      textAlign: "justify",
-                                    }}
-                                  >
-                                    {formatDate(
-                                      item.created_at,
-                                      "date monthName year hour:minute"
-                                    )}
-                                  </div>
-                                </div>
+                                </Link>
                               </div>
                             );
                           })}
