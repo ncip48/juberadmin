@@ -24,6 +24,7 @@ import Content from "./Content";
 import Card from "./Card";
 import ItemMenu from "./ItemMenu";
 import AutoComplete from "./AutoComplete";
+import MarkupText from "./MarkupText";
 
 export {
   Button,
@@ -52,4 +53,5 @@ export {
   Card,
   ItemMenu,
   AutoComplete,
+  MarkupText,
 };

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -6,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import {
   Container,
   Content,
+  MarkupText,
   PageHeading,
   Sidebar,
   Topbar,
@@ -28,7 +30,7 @@ function PeriksaChat({ history }) {
   useEffect(() => {
     getList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [page]);
 
   const getList = async () => {
     let data = await chat_api({
@@ -39,7 +41,7 @@ function PeriksaChat({ history }) {
         page: page,
       },
     });
-    console.log(data);
+    // console.log(data);
     setResult(data?.data?.data);
     setTotalPage(data?.data?.totalPage);
   };
@@ -70,13 +72,52 @@ function PeriksaChat({ history }) {
                         <div className="card">
                           <div className="panel-body">
                             <h6>
-                              {it.chat_idrs} - {it.chat_nama}
+                              {it.chat_idrs} - <MarkupText msg={it.chat_nama} />
                             </h6>
                           </div>
                         </div>
                       </Link>
                     );
                   })}
+                </div>
+                <div
+                  className="dataTables_paginate paging_simple_numbers"
+                  id="tableExport_paginate"
+                >
+                  <ul
+                    className="pagination"
+                    style={{ justifyContent: "center" }}
+                  >
+                    <li
+                      className="paginate_button page-item previous disabled"
+                      id="tableExport_previous"
+                    >
+                      <a className="page-link">Sebelumnya</a>
+                    </li>
+                    {[...Array(totalPage).keys()].map((item, index) => {
+                      return (
+                        <li
+                          key={index}
+                          className={`paginate_button page-item ${
+                            item + 1 === page ? "active" : ""
+                          } `}
+                        >
+                          <a
+                            onClick={() => setPage(item + 1)}
+                            className="page-link"
+                          >
+                            {item + 1}
+                          </a>
+                        </li>
+                      );
+                    })}
+                    <li
+                      className="paginate_button page-item next"
+                      id="tableExport_next"
+                    >
+                      <a className="page-link">Selanjutnya</a>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
