@@ -4,8 +4,6 @@ import React from "react";
 const MarkupText = (data) => {
   const { msg, chat = false, topUp = false, prefix = "%i" } = data;
 
-  console.log(msg);
-
   const markupTranslate = (text) => {
     //%i = important
     // if (text.includes('%i')) {
@@ -22,9 +20,9 @@ const MarkupText = (data) => {
     obj = obj ?? [];
     const RenderAll = obj.map((item, i) => {
       if (i % 2 == 0) {
-        return <RenderNormalText msg={item} />;
+        return <RenderNormalText key={i} msg={item} />;
       } else {
-        return <RenderImportantText msg={item} />;
+        return <RenderImportantText key={i} msg={item} />;
       }
     });
     return (
