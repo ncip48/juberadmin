@@ -25,6 +25,8 @@ function PeriksaChatSee({ history }) {
   let prevData = JSON.parse(dec(id));
   const enc = cipher("akuimuet");
 
+  console.log(prevData);
+
   useEffect(() => {
     getList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -39,7 +41,7 @@ function PeriksaChatSee({ history }) {
         is_user: true,
       },
     });
-    console.log(data);
+    // console.log(data);
     setResult(data?.data);
   };
 
@@ -52,7 +54,7 @@ function PeriksaChatSee({ history }) {
         <Container>
           <Sidebar active="periksachat" />
           <Content>
-            <PageHeading title="Periksa Chat" />
+            <PageHeading title={`Periksa Chat ${prevData.chat_nama}`} />
             <div className="row">
               <div className="col-12">
                 <div className="row clearfix">
