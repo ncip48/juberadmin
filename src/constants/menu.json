@@ -20,7 +20,7 @@
   {
     "name": "Periksa Chat",
     "icon": "chat",
-    "to": "PeriksaChatAdmin",
+    "to": "check-chat",
     "active": "periksa"
   },
   {

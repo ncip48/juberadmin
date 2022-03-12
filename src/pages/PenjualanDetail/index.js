@@ -175,10 +175,10 @@ function PenjualanDetail() {
                               <div className="col-md-3">Subtotal Produk</div>
                             </div>
                             <div className="row">
-                              <div className="col-md-3">
+                              <div className="col-md-4">
                                 Subtotal Pengiriman:
                               </div>
-                              <div className="col-md-9">
+                              <div className="col-md-8">
                                 {formatRupiah(result?.head?.shipment_fee ?? 0)}
                               </div>
                             </div>
