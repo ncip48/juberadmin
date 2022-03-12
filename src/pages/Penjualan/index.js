@@ -106,7 +106,7 @@ function Penjualan() {
         })
       )
     );
-    console.log(res.data.data);
+    // console.log(res.data.data);
     setResult(res?.data?.data?.data);
     setTotalPage(res?.data?.data?.last_page);
   };
