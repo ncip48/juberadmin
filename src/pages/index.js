@@ -34,6 +34,7 @@ import TopProdukFood from "./TopProdukFood";
 import TopProdukFoodCreate from "./TopProdukFoodCreate";
 import Penjualan from "./Penjualan";
 import PenjualanDetail from "./PenjualanDetail";
+import PeriksaChat from "./PeriksaChat";
 
 export {
   SignIn,
@@ -72,4 +73,5 @@ export {
   TopProdukFoodCreate,
   Penjualan,
   PenjualanDetail,
+  PeriksaChat,
 };

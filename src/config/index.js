@@ -5,9 +5,7 @@ export const baseUrl = "https://api.juber.co.id:9300";
 export const uuid = "e4351a1d0579f6a0";
 export const baseRequest = axios.create({ baseURL: baseUrl });
 export const uploadRequest = axios.create({ baseURL: "https://juber.co.id" });
-export const socketHost = axios.create({
-  baseURL: "http://116.193.191.172:8002",
-});
+export const socketHost = "http://116.193.191.172:8002";
 
 export const generateHeaders = async (types) => {
   try {

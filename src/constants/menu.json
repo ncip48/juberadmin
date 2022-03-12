@@ -21,7 +21,7 @@
     "name": "Periksa Chat",
     "icon": "chat",
     "to": "check-chat",
-    "active": "periksa"
+    "active": "periksachat"
   },
   {
     "name": "Verifikasi",

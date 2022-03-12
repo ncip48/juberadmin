@@ -40,6 +40,7 @@ import {
   TopProdukFoodCreate,
   Penjualan,
   PenjualanDetail,
+  PeriksaChat,
 } from "./pages";
 import { LoginRoute } from "./components/LoginRoute";
 
@@ -95,6 +96,7 @@ const Routes = () => (
       />
       <PrivateRoute path="/sales" component={Penjualan} />
       <PrivateRoute path="/detail-sales" component={PenjualanDetail} />
+      <PrivateRoute path="/check-chat" component={PeriksaChat} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>

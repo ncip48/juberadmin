@@ -234,7 +234,7 @@ function PenjualanDetail() {
                               <div className="col-md-8">
                                 {formatDate(
                                   result?.head?.created_at,
-                                  "date-month-year"
+                                  "date monthName year"
                                 )}
                               </div>
                             </div>
@@ -243,7 +243,7 @@ function PenjualanDetail() {
                               <div className="col-md-8">
                                 {formatDate(
                                   result?.head?.created_at,
-                                  "date-month-year"
+                                  "date monthName year"
                                 )}
                               </div>
                             </div>
@@ -252,7 +252,7 @@ function PenjualanDetail() {
                               <div className="col-md-8">
                                 {formatDate(
                                   result?.head?.created_at,
-                                  "date-month-year"
+                                  "date monthName year"
                                 )}
                               </div>
                             </div>
