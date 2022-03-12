@@ -34,7 +34,10 @@ const RenderBox = ({ msg, date, type, name, data }) => {
         className="avatar"
         alt=""
       />
-      <div className="message">
+      <div
+        className="message"
+        style={{ maxWidth: 500, float: !type ? "left" : "right" }}
+      >
         <span className="arrow"></span>{" "}
         <a className="name">
           {name.includes("%i")
@@ -100,7 +103,7 @@ function PeriksaChatDetail({ history }) {
                       </header>
                     </div>
                     <div className="card-body no-padding height-9">
-                      <div className="row">
+                      <div className="">
                         <ScrollToBottom className="scroll-to-bottom">
                           <ul
                             className="chat nice-chat chat-page small-slimscroll-style"
