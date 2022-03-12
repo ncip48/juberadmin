@@ -36,6 +36,7 @@ import Penjualan from "./Penjualan";
 import PenjualanDetail from "./PenjualanDetail";
 import PeriksaChat from "./PeriksaChat";
 import PeriksaChatSee from "./PeriksaChatSee";
+import PeriksaChatDetail from "./PeriksaChatDetail";
 
 export {
   SignIn,
@@ -76,4 +77,5 @@ export {
   PenjualanDetail,
   PeriksaChat,
   PeriksaChatSee,
+  PeriksaChatDetail,
 };

@@ -42,6 +42,7 @@ import {
   PenjualanDetail,
   PeriksaChat,
   PeriksaChatSee,
+  PeriksaChatDetail,
 } from "./pages";
 import { LoginRoute } from "./components/LoginRoute";
 
@@ -99,6 +100,7 @@ const Routes = () => (
       <PrivateRoute path="/detail-sales" component={PenjualanDetail} />
       <PrivateRoute path="/check-chat" component={PeriksaChat} />
       <PrivateRoute path="/see-check-chat" component={PeriksaChatSee} />
+      <PrivateRoute path="/detail-check-chat" component={PeriksaChatDetail} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>

@@ -95,3 +95,7 @@ div.search-form-opened .btn.submit {
 .suggestions li:not(:last-of-type) {
   border-bottom: 1px solid #999;
 }
+
+.scroll-to-bottom {
+  height: 600px;
+}

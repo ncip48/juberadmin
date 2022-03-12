@@ -20,9 +20,9 @@ import chat_api, { getSocketApi } from "../../api/websocket";
 function PeriksaChatSee({ history }) {
   const { search } = useLocation();
   const id = new URLSearchParams(search).get("id");
-  const [result, setResult] = useState(null);
   const dec = decipher("akuimuet");
   let prevData = JSON.parse(dec(id));
+  const [result, setResult] = useState(null);
   const enc = cipher("akuimuet");
 
   console.log(prevData);
