@@ -25,6 +25,7 @@ import Card from "./Card";
 import ItemMenu from "./ItemMenu";
 import AutoComplete from "./AutoComplete";
 import MarkupText from "./MarkupText";
+import RenderBox from "./RenderBox";
 
 export {
   Button,
@@ -54,4 +55,5 @@ export {
   ItemMenu,
   AutoComplete,
   MarkupText,
+  RenderBox,
 };
