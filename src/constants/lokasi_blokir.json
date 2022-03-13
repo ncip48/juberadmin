@@ -2,21 +2,25 @@
   {
     "id": 0,
     "nama": "Toko Marketplace",
-    "to": "/list-market-block"
+    "to": "/list-market-block",
+    "img": "https://juber.co.id/storage/images/bkN6LQ3LVuuISgmeYM6mBFLaylVV2LdvDFYGy6Eu.png"
   },
   {
     "id": 1,
     "nama": "Merchant Food",
-    "to": "/list-food-block"
+    "to": "/list-food-block",
+    "img": "https://juber.co.id/storage/images/1pZNV90vtUcSuRyW2v4OYGCS1wx8y8NXu7FwqtiQ.jpg"
   },
   {
     "id": 2,
     "nama": "Merchant Layanan Jasa",
-    "to": "/list-service-block"
+    "to": "/list-service-block",
+    "img": "https://juber.co.id/storage/images/7qhDPRuHN2buGZJYjvgH6SeHJEYdZRJNsM7Z5bio.jpg"
   },
   {
     "id": 3,
     "nama": "Driver Juber",
-    "to": "/list-driver-block"
+    "to": "/list-driver-block",
+    "img": "https://juber.co.id/storage/images/HSNpcRwTn4mvnAZZCMqsUDZBPZAJffugrYAQtS6G.png"
   }
 ]

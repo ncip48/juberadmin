@@ -187,6 +187,8 @@ export const getStatus = (status) => {
       return "Terverifikasi";
     case 5:
       return "Belum Terverifikasi";
+    case 6:
+      return "Terblokir";
     default:
       return null;
   }

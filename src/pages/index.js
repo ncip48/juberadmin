@@ -39,6 +39,7 @@ import PeriksaChatSee from "./PeriksaChatSee";
 import PeriksaChatDetail from "./PeriksaChatDetail";
 import ChatAdmin from "./ChatAdmin";
 import ListBlokir from "./ListBlokir";
+import ListBlokirDriver from "./ListBlokirDriver";
 
 export {
   SignIn,
@@ -82,4 +83,5 @@ export {
   PeriksaChatDetail,
   ChatAdmin,
   ListBlokir,
+  ListBlokirDriver,
 };

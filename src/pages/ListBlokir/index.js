@@ -31,7 +31,16 @@ function ListBlokir() {
                         to={item.to}
                       >
                         <div className="card">
-                          <div className="panel-body">
+                          <div className="panel-body mt-3">
+                            <img
+                              src={item.img}
+                              style={{
+                                height: "3rem",
+                                width: "3rem",
+                                objectFit: "contain",
+                              }}
+                              alt="i"
+                            />
                             <h6>{item.nama}</h6>
                           </div>
                         </div>
