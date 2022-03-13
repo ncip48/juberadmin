@@ -32,6 +32,7 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1",
     "set-value": "^3.0.1",
+    "socket.io-client": "^4.4.1",
     "styled-components": "^5.3.3"
   },
   "scripts": {

@@ -76,6 +76,7 @@ const App = () => {
     if (!token) return;
     updateToken();
     registerChat();
+    localStorage.setItem("token", token);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 

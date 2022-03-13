@@ -38,7 +38,7 @@
   {
     "name": "Chat Komplain",
     "icon": "chat_bubble",
-    "to": "ChatKomplain",
+    "to": "chat-admin",
     "active": "chat"
   },
   {

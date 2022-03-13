@@ -7,10 +7,10 @@ import { formatDate } from "../../helpers";
 
 const RenderBox = ({ msg, date, type, name, data }) => {
   let havePicture = data?.picture !== "" && data?.picture !== null;
-  let haveAttachProduct = JSON.parse(data.data).type == "product_att";
-  let attachProduct = JSON.parse(data.data).data;
-  let haveAttachInv = JSON.parse(data?.data)?.type == "invoice_att";
-  let attachInv = JSON.parse(data?.data)?.data;
+  // let haveAttachProduct = JSON.parse(data.data).type == "product_att";
+  // let attachProduct = JSON.parse(data.data).data;
+  // let haveAttachInv = JSON.parse(data?.data)?.type == "invoice_att";
+  // let attachInv = JSON.parse(data?.data)?.data;
   return (
     <li className={type == false ? "in" : "out"}>
       <img

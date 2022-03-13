@@ -1,6 +1,8 @@
 let users = localStorage.getItem("user");
 const user = JSON.parse(users);
-const initialState = user ? { loggedIn: true, user: user.auth } : {};
+const initialState = user
+  ? { loggedIn: true, user: user.auth, token: null }
+  : {};
 
 export function Auth(state = initialState, action) {
   switch (action.type) {

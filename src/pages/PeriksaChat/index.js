@@ -46,7 +46,7 @@ function PeriksaChat({ history }) {
     });
     console.log(data);
     setResult(data?.data?.data);
-    setTotalPage(data.data.totalPage);
+    setTotalPage(data.data.data.length);
     setCount(data.data.count);
     setLoading(false);
   };
