@@ -99,3 +99,11 @@ div.search-form-opened .btn.submit {
 .scroll-to-bottom {
   height: 600px;
 }
+
+.chat li.out .message {
+  margin-right: 0px !important;
+}
+
+.chat li.in .message {
+  margin-left: 0px !important;
+}

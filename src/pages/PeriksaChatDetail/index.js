@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-target-blank */
+/* eslint-disable array-callback-return */
 /* eslint-disable eqeqeq */
 /* eslint-disable no-script-url */
 /* eslint-disable jsx-a11y/anchor-has-content */
@@ -22,11 +24,11 @@ import chat_api, { getSocketApi } from "../../api/websocket";
 import ScrollToBottom from "react-scroll-to-bottom";
 
 const RenderBox = ({ msg, date, type, name, data }) => {
-  //   let havePicture = data?.picture !== "" && data?.picture !== null;
-  //   let haveAttachProduct = JSON.parse(data.data).type == "product_att";
-  //   let attachProduct = JSON.parse(data.data).data;
-  //   let haveAttachInv = JSON.parse(data?.data)?.type == "invoice_att";
-  //   let attachInv = JSON.parse(data?.data)?.data;
+  let havePicture = data?.picture !== "" && data?.picture !== null;
+  let haveAttachProduct = JSON.parse(data.data).type == "product_att";
+  let attachProduct = JSON.parse(data.data).data;
+  let haveAttachInv = JSON.parse(data?.data)?.type == "invoice_att";
+  let attachInv = JSON.parse(data?.data)?.data;
   return (
     <li className={type == false ? "in" : "out"}>
       <img
@@ -47,7 +49,20 @@ const RenderBox = ({ msg, date, type, name, data }) => {
         <span className="datetime">
           {formatDate(date, "date monthLess year hour:minute")}
         </span>{" "}
-        <span className="body">{msg}</span>
+        {havePicture ? (
+          <div>
+            <a target="_blank" href={data?.picture}>
+              <img
+                src={data?.picture}
+                alt="img"
+                style={{ height: 350, width: 350, objectFit: "cover" }}
+              />
+            </a>
+            <span className="body">{msg}</span>
+          </div>
+        ) : (
+          <span className="body">{msg}</span>
+        )}
       </div>
     </li>
   );
@@ -76,8 +91,16 @@ function PeriksaChatDetail({ history }) {
         isUser: true,
       },
     });
-    // console.log(data.data);
-    setResult(data?.data);
+    console.log(data.data);
+    let tempData = [];
+    let dataActual = data.data;
+    dataActual.map((items, index) => {
+      tempData.push({
+        ...items,
+        data: JSON.stringify(items.data),
+      });
+    });
+    setResult(dataActual);
   };
 
   return (
@@ -116,7 +139,7 @@ function PeriksaChatDetail({ history }) {
                                   msg={item.message}
                                   name={item.nama}
                                   date={item.created_at}
-                                  data={item.data}
+                                  data={item}
                                   key={index}
                                 />
                               );
