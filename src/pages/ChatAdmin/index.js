@@ -65,8 +65,6 @@ function ChatAdmin({ history }) {
   const enc = cipher("akuimuet");
   const [inputText, setInputText] = useState("");
 
-  //   const [socket, setSocket] = useState(null);
-
   let socket = io(socketHost);
 
   const [messages, setMessages] = useState({});
@@ -74,7 +72,6 @@ function ChatAdmin({ history }) {
 
   useEffect(() => {
     let token = localStorage.getItem("token");
-
     let params = {
       id: selectedItem?.you[0]?.nickname ?? user.idrs + "_adminjuber",
       senderIdrs: selectedItem?.opponent[0]?.nickname ?? "Error",
@@ -83,12 +80,10 @@ function ChatAdmin({ history }) {
     };
 
     socket.emit("new user", params);
-
     getChatDetail();
 
     socket.on("error", (data) => {
       console.log("SocketEventError", data);
-      // Toaster(`socket: ${data.event} ~>` + data.msg);
     });
 
     socket.on("disconnect", () => {
@@ -101,7 +96,6 @@ function ChatAdmin({ history }) {
     });
 
     socket.on("chat", (data) => {
-      // console.log('SocketEventChat', data);
       addNewChat(data);
     });
 
@@ -111,8 +105,11 @@ function ChatAdmin({ history }) {
     });
 
     return () => {
-      //   socket.off("message", messageListener);
-      //   socket.off("deleteMessage", deleteMessageListener);
+      socket.off("error");
+      socket.off("chat");
+      socket.off("read");
+      socket.off("disconnect");
+      socket.off("connection");
     };
   }, [selectedItem]);
 
@@ -126,18 +123,11 @@ function ChatAdmin({ history }) {
         isUser: false,
       },
     });
-    // console.log(data);
     let response = data.data.reverse();
     setChatIsi(response);
   };
 
   const addNewChat = (datas) => {
-    // if (!chatIsi) return;
-    // setChatIsi([
-    //   ...chatIsi,
-    //   //   { ...datas, data: !datas.data || datas.data == "" ? "{}" : datas.data },
-    //   datas,
-    // ]);
     setChatIsi((currentArray) => [
       ...currentArray,
       {
