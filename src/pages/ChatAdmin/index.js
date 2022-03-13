@@ -147,10 +147,12 @@ function ChatAdmin({ history }) {
   };
 
   const sendChat = (params) => {
+    if (inputText === "") return;
     setInputText("");
     socket.emit("chat", params);
     // this.GroupedChat(state.data);
     addNewChat(params);
+    // getList();
   };
 
   //   console.log(messages);
@@ -161,6 +163,7 @@ function ChatAdmin({ history }) {
   }, []);
 
   const getList = async () => {
+    // console.log("hit");
     let data = await chat_api({
       method: getSocketApi.chat.list_chat_user.method,
       url: getSocketApi.chat.list_chat_user.url,
@@ -178,7 +181,7 @@ function ChatAdmin({ history }) {
     setSelectedItem(item);
   };
 
-  console.log("isichat", chatIsi);
+  //   console.log("isichat", chatIsi);
 
   return (
     <>
@@ -191,7 +194,7 @@ function ChatAdmin({ history }) {
             <div className="row">
               <div className="col-12">
                 <div className="row">
-                  <div className="col-sm-4">
+                  <div className={selectedItem ? "col-sm-4" : "col-sm-12"}>
                     <div className="card card-box">
                       <div className="card-head">
                         <header>User List</header>
