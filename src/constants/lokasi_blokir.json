@@ -1,0 +1,22 @@
+[
+  {
+    "id": 0,
+    "nama": "Toko Marketplace",
+    "to": "/list-market-block"
+  },
+  {
+    "id": 1,
+    "nama": "Merchant Food",
+    "to": "/list-food-block"
+  },
+  {
+    "id": 2,
+    "nama": "Merchant Layanan Jasa",
+    "to": "/list-service-block"
+  },
+  {
+    "id": 3,
+    "nama": "Driver Juber",
+    "to": "/list-driver-block"
+  }
+]

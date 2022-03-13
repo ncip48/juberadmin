@@ -32,7 +32,7 @@
   {
     "name": "Blokir/Unblokir",
     "icon": "block",
-    "to": "ListBlokir",
+    "to": "list-block",
     "active": "blokir"
   },
   {

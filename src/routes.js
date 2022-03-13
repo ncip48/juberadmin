@@ -44,6 +44,7 @@ import {
   PeriksaChatSee,
   PeriksaChatDetail,
   ChatAdmin,
+  ListBlokir,
 } from "./pages";
 import { LoginRoute } from "./components/LoginRoute";
 
@@ -103,6 +104,7 @@ const Routes = () => (
       <PrivateRoute path="/see-check-chat" component={PeriksaChatSee} />
       <PrivateRoute path="/detail-check-chat" component={PeriksaChatDetail} />
       <PrivateRoute path="/chat-admin" component={ChatAdmin} />
+      <PrivateRoute path="/list-block" component={ListBlokir} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>
