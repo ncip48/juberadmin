@@ -147,6 +147,7 @@ function ChatAdmin({ history }) {
   };
 
   const sendChat = (params) => {
+    setInputText("");
     socket.emit("chat", params);
     // this.GroupedChat(state.data);
     addNewChat(params);
@@ -271,12 +272,12 @@ function ChatAdmin({ history }) {
                                 <div className="input-group">
                                   <input
                                     type="text"
-                                    name="message"
                                     placeholder="Enter Chat"
                                     className="form-control"
                                     onChange={(e) =>
                                       setInputText(e.target.value)
                                     }
+                                    value={inputText}
                                   />
                                   <span className="input-group-btn">
                                     <button
