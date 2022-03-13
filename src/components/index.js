@@ -26,6 +26,7 @@ import ItemMenu from "./ItemMenu";
 import AutoComplete from "./AutoComplete";
 import MarkupText from "./MarkupText";
 import RenderBox from "./RenderBox";
+import Pagination from "./Pagination";
 
 export {
   Button,
@@ -56,4 +57,5 @@ export {
   AutoComplete,
   MarkupText,
   RenderBox,
+  Pagination,
 };

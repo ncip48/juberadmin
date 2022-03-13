@@ -9,6 +9,7 @@ import {
   Content,
   MarkupText,
   PageHeading,
+  Pagination,
   Sidebar,
   Topbar,
   Wrapper,
@@ -24,6 +25,8 @@ function PeriksaChat({ history }) {
   const [result, setResult] = useState(null);
   const [totalPage, setTotalPage] = useState(0);
   const [page, setPage] = useState(1);
+  const [count, setCount] = useState(10);
+  const [loading, setLoading] = useState(true);
 
   const enc = cipher("akuimuet");
 
@@ -41,12 +44,16 @@ function PeriksaChat({ history }) {
         page: page,
       },
     });
-    // console.log(data);
+    console.log(data);
     setResult(data?.data?.data);
-    setTotalPage(data?.data?.totalPage);
+    setTotalPage(data.data.totalPage);
+    setCount(data.data.count);
+    setLoading(false);
   };
 
-  const saveAction = async (payload) => {};
+  const onPageChange = (data) => {
+    setPage(data.currentPage);
+  };
 
   return (
     <>
@@ -80,45 +87,14 @@ function PeriksaChat({ history }) {
                     );
                   })}
                 </div>
-                <div
-                  className="dataTables_paginate paging_simple_numbers"
-                  id="tableExport_paginate"
-                >
-                  <ul
-                    className="pagination"
-                    style={{ justifyContent: "center" }}
-                  >
-                    <li
-                      className="paginate_button page-item previous disabled"
-                      id="tableExport_previous"
-                    >
-                      <a className="page-link">Sebelumnya</a>
-                    </li>
-                    {[...Array(totalPage).keys()].map((item, index) => {
-                      return (
-                        <li
-                          key={index}
-                          className={`paginate_button page-item ${
-                            item + 1 === page ? "active" : ""
-                          } `}
-                        >
-                          <a
-                            onClick={() => setPage(item + 1)}
-                            className="page-link"
-                          >
-                            {item + 1}
-                          </a>
-                        </li>
-                      );
-                    })}
-                    <li
-                      className="paginate_button page-item next"
-                      id="tableExport_next"
-                    >
-                      <a className="page-link">Selanjutnya</a>
-                    </li>
-                  </ul>
-                </div>
+                {!loading && (
+                  <Pagination
+                    totalRecords={count}
+                    pageLimit={totalPage}
+                    pageNeighbours={2}
+                    onPageChanged={(f) => onPageChange(f)}
+                  />
+                )}
               </div>
             </div>
           </Content>
