@@ -122,10 +122,10 @@ function Voucher() {
                                       <b>Quota</b>
                                     </div>
                                     <div className="percent pull-right">
-                                      {it.usedpromo}/{it.quota} -{" "}
+                                      {it.usedpromo}/{it.quota + it.usedpromo} -{" "}
                                       {Math.round(
                                         (parseInt(it.usedpromo) /
-                                          parseInt(it.quota)) *
+                                          parseInt(it.quota + it.usedpromo)) *
                                           100
                                       )}{" "}
                                       %

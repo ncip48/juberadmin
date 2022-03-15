@@ -1,14 +1,14 @@
-import { generateHeaders, socketHost } from "../config";
+import { generateHeaders, socketHosts } from "../config";
 
 export default {
   async broadcastTopic(payload) {
     const config = await generateHeaders(["content-json"]);
 
-    return socketHost.post(`/notif/topic`, { ...payload }, config);
+    return socketHosts.post(`/notif/topic`, { ...payload }, config);
   },
   async broadcast(payload) {
     const config = await generateHeaders(["content-json"]);
 
-    return socketHost.post(`/notif`, { ...payload }, config);
+    return socketHosts.post(`/notif`, { ...payload }, config);
   },
 };
