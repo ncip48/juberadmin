@@ -88,6 +88,12 @@ function ListLokasiMenu() {
     setModal(false);
   };
 
+  const removeItem = (id) => {
+    const items = result.filter((item, index) => item.id !== id);
+    console.log(items);
+    setResult(items);
+  };
+
   const simpan = async () => {
     const joinedId = result?.map((elem) => elem.id).join("#");
     const joinedNotes = result
@@ -137,6 +143,25 @@ function ListLokasiMenu() {
                           <div className="panel-body">
                             <h6>{item.nama}</h6>
                             <h6>({item.id})</h6>
+                            <div
+                              style={{
+                                width: "1.5rem",
+                                height: "1.5rem",
+                                borderRadius: 99,
+                                alignItems: "center",
+                                justifyContent: "center",
+                                alignSelf: "center",
+                              }}
+                              className="text-center d-flex justify-content-center align-items-center"
+                              onClick={() => removeItem(item.id)}
+                            >
+                              <i
+                                className="material-icons"
+                                style={{ color: "#E44F56", cursor: "pointer" }}
+                              >
+                                cancel
+                              </i>
+                            </div>
                           </div>
                         </div>
                       </div>
