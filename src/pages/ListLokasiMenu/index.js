@@ -1,7 +1,8 @@
+/* eslint-disable eqeqeq */
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import {
   AutoComplete,
   Container,
@@ -75,6 +76,15 @@ function ListLokasiMenu() {
     setResultMenu(res?.data?.lobj);
   };
 
+  const validasiTambah = () => {
+    console.log(result.length);
+    if (lokasi == 1) {
+      if (result.length == 4)
+        return toast.error("Tidak Bisa Menambahkan Menu Lagi di Menu Unggulan");
+    }
+    setModal(true);
+  };
+
   const addMenu = () => {
     setResult([
       ...result,
@@ -126,7 +136,7 @@ function ListLokasiMenu() {
             <PageHeading
               title={`Lokasi ${lokasi}`}
               add
-              onAdd={() => setModal(true)}
+              onAdd={() => validasiTambah()}
             />
             <div className="row">
               <div className="col-12">
