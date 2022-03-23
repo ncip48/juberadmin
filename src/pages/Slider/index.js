@@ -279,6 +279,7 @@ function Slider({ history }) {
                       onChange={(e) =>
                         uploadImage(e?.target?.files[0], "bottom")
                       }
+                      onClick={(e) => (e.target.value = null)}
                     />
                   </>
                   {result.three.length !== 0 && (
