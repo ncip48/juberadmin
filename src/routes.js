@@ -46,6 +46,7 @@ import {
   ChatAdmin,
   ListBlokir,
   ListBlokirDriver,
+  Slider,
 } from "./pages";
 import { LoginRoute } from "./components/LoginRoute";
 
@@ -107,6 +108,7 @@ const Routes = () => (
       <PrivateRoute path="/chat-admin" component={ChatAdmin} />
       <PrivateRoute path="/list-block" component={ListBlokir} />
       <PrivateRoute path="/list-driver-block" component={ListBlokirDriver} />
+      <PrivateRoute path="/sliders" component={Slider} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>

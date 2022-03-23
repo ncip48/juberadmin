@@ -148,5 +148,11 @@
     "icon": "swap_vert",
     "to": "update-user",
     "active": "update-user"
+  },
+  {
+    "name": "Slider & Running Text",
+    "icon": "slideshow",
+    "to": "sliders",
+    "active": "slider"
   }
 ]
