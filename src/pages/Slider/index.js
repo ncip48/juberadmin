@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+/* eslint-disable react/jsx-no-target-blank */
+/* eslint-disable eqeqeq */
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import {
   Button,
   Card,
@@ -14,54 +17,107 @@ import {
   Wrapper,
 } from "../../components";
 import { _fetch } from "../../redux/actions/global";
-import { GlobalService, InformationService } from "../../services";
+import { BridgeService, GlobalService } from "../../services";
 
-function InformasiCreate({ history }) {
+function Slider({ history }) {
   const dispatch = useDispatch();
-  const [form, setForm] = useState({
-    judul: "",
-    isi: "",
-    image: "",
+  const [result, setResult] = useState({
+    one: "",
+    two: "",
+    three: "",
   });
-  const [result, setResult] = useState("");
+  const [running, setRunning] = useState("");
+  const [slider, setSlider] = useState(null);
+  const [topBanner, setTopBanner] = useState("");
 
-  const handleChange = (type) => (val) => {
-    setForm({ ...form, [type]: val.target.value });
-  };
+  useEffect(() => {
+    getSliders();
+  }, []);
 
-  const uploadImage = async (data) => {
-    const res = await dispatch(_fetch(GlobalService.uploadFoto(data)));
-    if (!res?.success) return;
-    setForm({ ...form, image: res.file });
-  };
-
-  const deleteImage = async () => {
-    const res = await dispatch(_fetch(GlobalService.deleteFoto(form?.image)));
-    if (!res?.success) return;
-    setForm({ ...form, image: "" });
-  };
-
-  const createAction = async () => {
-    if (form.judul.length === 0) return toast.error("Masukkan Judul");
-    if (form.isi.length === 0) return toast.error("Masukkan Isi");
-    const payloadInfo = {
-      judul: form.judul,
-      image: form.image,
-      isi: form.isi,
-    };
+  const getSliders = async () => {
     const res = await dispatch(
       _fetch(
-        InformationService.createInformasi({
-          payload: JSON.stringify(payloadInfo),
+        BridgeService.JbDelivery({
+          key: "getslider",
+          payload: JSON.stringify({ setting: "slider" }),
         })
       )
     );
-    console.log("respon payload informasi", payloadInfo);
-    console.log("respon buat informasi", res);
-    setForm({ judul: "", isi: "", image: "" });
-    setResult("Berhasil membuat informasi");
-    history.goBack();
+    const runningText = res?.data?.lobj.filter((r) => r.idapps == "slider1")[0];
+    const bannerTop = res?.data?.lobj.filter((r) => r.idapps == "slider2")[0];
+    const bannerBottom = res?.data?.lobj.filter(
+      (r) => r.idapps !== "slider1" && r.idapps !== "slider2"
+    );
+    console.log(res.data.lobj);
+    setRunning(runningText?.value);
+    setTopBanner(bannerTop?.value);
+    setSlider(bannerBottom);
   };
+
+  const editRunningAction = async () => {
+    setResult({ ...result, one: "" });
+    const res = await dispatch(
+      _fetch(
+        BridgeService.JbDelivery({
+          key: "setslider",
+          payload: JSON.stringify({ idapps: "slider1", value: running }),
+        }),
+        false
+      )
+    );
+    setResult({ ...result, one: res?.data?.msg });
+    getSliders();
+  };
+
+  const editBannerTop = async () => {
+    setTopBanner("");
+  };
+
+  const editBannerTopAction = async () => {
+    setResult({ ...result, two: "" });
+    const res = await dispatch(
+      _fetch(
+        BridgeService.JbDelivery({
+          key: "setslider",
+          payload: JSON.stringify({ idapps: "slider2", value: topBanner }),
+        }),
+        false
+      )
+    );
+    setResult({ ...result, two: res?.data?.msg });
+    getSliders();
+  };
+
+  const editBannerBottomAction = async (img) => {
+    setResult({ ...result, three: "" });
+    const res = await dispatch(
+      _fetch(
+        BridgeService.JbDelivery({
+          key: "setslider",
+          payload: JSON.stringify({ value: img }),
+        }),
+        false
+      )
+    );
+    setResult({ ...result, three: res?.data?.msg });
+    getSliders();
+  };
+
+  const uploadImage = async (data, type) => {
+    const res = await dispatch(_fetch(GlobalService.uploadFoto(data)));
+    if (!res?.success) return;
+    // setForm({ ...form, image: res.file });
+    if (type == "top") {
+      setTopBanner(res.file);
+    } else {
+      editBannerBottomAction(res.file);
+    }
+  };
+
+  //   const deleteImage = async (val) => {
+  //     const res = await dispatch(_fetch(GlobalService.deleteFoto(val)));
+  //     if (!res?.success) return;
+  //   };
 
   return (
     <>
@@ -75,86 +131,160 @@ function InformasiCreate({ history }) {
               <div className="col-12">
                 <Card>
                   <Input
-                    label="Judul"
-                    onChange={handleChange("judul")}
-                    placeholder="Masukkan Judul"
-                    value={form.judul}
-                  />
-                  <Input
-                    label="Isi"
-                    onChange={handleChange("isi")}
-                    placeholder="Masukkan Isi"
+                    label="Running Text"
+                    onChange={(val) => setRunning(val.target.value)}
+                    placeholder="Masukkan Running Text"
+                    value={running}
                     multiline
                     rows="30"
-                    value={form.isi}
                   />
-                  {form.image.length === 0 ? (
-                    <Input
-                      accept="image/*"
-                      label="Gambar"
-                      type="file"
-                      onChange={(e) => uploadImage(e?.target?.files[0])}
-                    />
-                  ) : (
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        width: "9.5rem",
-                        padding: 10,
-                        border: "2px solid #d2d6de",
-                        backgroundColor: "rgba(210, 210, 210, 0.25)",
-                        color: "#ffffff",
-                      }}
-                      className="mb-3 d-flex flex-column"
-                    >
-                      <img
-                        src={form.image}
-                        alt=""
-                        className="img-thumbnail mb-2"
-                        style={{
-                          height: "8rem",
-                          width: "8rem",
-                          objectFit: "contain",
-                        }}
-                      />
-                      <div
-                        style={{
-                          width: "1.5rem",
-                          height: "1.5rem",
-                          borderRadius: 99,
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                        className="text-center d-flex justify-content-center align-items-center"
-                        onClick={() => deleteImage()}
-                      >
-                        <i
-                          className="material-icons"
-                          style={{ color: "#E44F56", cursor: "pointer" }}
-                        >
-                          cancel
-                        </i>
-                      </div>
-                    </div>
-                  )}
-                  <div className="d-flex justify-content-center align-items-end">
-                    <Button
-                      title="Submit"
-                      type="warning"
-                      onClick={() => createAction()}
-                    />
-                    <Button
-                      title="Kembali"
-                      type="danger"
-                      onClick={() => history.goBack()}
-                      style={{ width: 130, marginLeft: 10 }}
-                    />
-                  </div>
-                  {result.length !== 0 && (
+                  <Button
+                    title="Submit"
+                    type="warning"
+                    onClick={() => editRunningAction()}
+                  />
+                  {result.one.length !== 0 && (
                     <>
                       <hr />
-                      <div className="alert alert-success">{result}</div>
+                      <div className="alert alert-success">{result.one}</div>
+                    </>
+                  )}
+                </Card>
+                <Card>
+                  {topBanner.length === 0 ? (
+                    <Input
+                      accept="image/*"
+                      label="Banner Home Atas"
+                      type="file"
+                      onChange={(e) => uploadImage(e?.target?.files[0], "top")}
+                    />
+                  ) : (
+                    <>
+                      <label>Banner Home Atas</label>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          width: "9.5rem",
+                          padding: 10,
+                          border: "2px solid #d2d6de",
+                          backgroundColor: "rgba(210, 210, 210, 0.25)",
+                          color: "#ffffff",
+                        }}
+                        className="mb-3 d-flex flex-column"
+                      >
+                        <a href={topBanner} target="_blank">
+                          <img
+                            src={topBanner}
+                            alt=""
+                            className="img-thumbnail mb-2"
+                            style={{
+                              height: "8rem",
+                              width: "8rem",
+                              objectFit: "contain",
+                            }}
+                          />
+                        </a>
+                        <div
+                          style={{
+                            width: "1.5rem",
+                            height: "1.5rem",
+                            borderRadius: 99,
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                          className="text-center d-flex justify-content-center align-items-center"
+                          onClick={() => editBannerTop()}
+                        >
+                          <i
+                            className="material-icons"
+                            style={{ color: "#E44F56", cursor: "pointer" }}
+                          >
+                            edit
+                          </i>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                  <Button
+                    title="Submit"
+                    type="warning"
+                    onClick={() => editBannerTopAction()}
+                  />
+                  {result.two.length !== 0 && (
+                    <>
+                      <hr />
+                      <div className="alert alert-success">{result.two}</div>
+                    </>
+                  )}
+                </Card>
+                <Card>
+                  <>
+                    <label>Banner Home Bawah</label>
+                    <div className="d-flex">
+                      {slider?.map((res, index) => {
+                        return (
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              width: "9.5rem",
+                              padding: 10,
+                              // border: "2px solid #d2d6de",
+                              // backgroundColor: "rgba(210, 210, 210, 0.25)",
+                              // color: "#ffffff",
+                            }}
+                            className="mb-3 d-flex flex-column"
+                            key={index}
+                          >
+                            <a href={res.value} target="_blank">
+                              <img
+                                src={res.value}
+                                alt=""
+                                className="img-thumbnail mb-2"
+                                style={{
+                                  height: "8rem",
+                                  width: "8rem",
+                                  objectFit: "contain",
+                                }}
+                              />
+                            </a>
+                            {/* <div
+                              style={{
+                                width: "1.5rem",
+                                height: "1.5rem",
+                                borderRadius: 99,
+                                alignItems: "center",
+                                justifyContent: "center",
+                              }}
+                              className="text-center d-flex justify-content-center align-items-center"
+                              onClick={() => deleteImage(res.value)}
+                            >
+                              <i
+                                className="material-icons"
+                                style={{ color: "#E44F56", cursor: "pointer" }}
+                              >
+                                cancel
+                              </i>
+                            </div> */}
+                          </div>
+                        );
+                      })}
+                    </div>
+                    <hr />
+                    <Input
+                      accept="image/*"
+                      label="Tambah"
+                      type="file"
+                      onChange={(e) =>
+                        uploadImage(e?.target?.files[0], "bottom")
+                      }
+                    />
+                  </>
+                  {result.three.length !== 0 && (
+                    <>
+                      <hr />
+                      <div className="alert alert-success">{result.three}</div>
                     </>
                   )}
                 </Card>
@@ -168,4 +298,4 @@ function InformasiCreate({ history }) {
   );
 }
 
-export default withRouter(InformasiCreate);
+export default withRouter(Slider);
