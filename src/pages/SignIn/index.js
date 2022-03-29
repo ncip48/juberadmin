@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import AuthService from "../../services/AuthService";
@@ -13,13 +13,17 @@ let phoneAdmin = ["085156842765", "087730545111"];
 function SignIn({ history }) {
   const dispatch = useDispatch();
   const [form, setForm] = useState({
-    no_hp: "",
+    no_hp: "085156842765",
     otp: null,
   });
   const [loginState, setLoginState] = useState({
     step: 0,
     msg: null,
   });
+
+  useEffect(() => {
+    localStorage.setItem("type", 0);
+  }, []);
 
   const handleChange = (type) => (val) => {
     setForm({ ...form, [type]: val.target.value });
@@ -39,6 +43,14 @@ function SignIn({ history }) {
       toast.error(error.message);
     }
   };
+
+  useEffect(() => {
+    if (form.no_hp === "085156842765") {
+      localStorage.setItem("type", 0);
+    } else {
+      localStorage.setItem("type", 1);
+    }
+  }, [form.no_hp]);
 
   const loginAction = async () => {
     try {
@@ -79,7 +91,7 @@ function SignIn({ history }) {
                 />
               </span>
               <span className="login100-form-title p-b-34 p-t-27">Log in</span>
-              <div className="wrap-input100 validate-input">
+              {/* <div className="wrap-input100 validate-input">
                 <input
                   className="input100"
                   type="text"
@@ -91,6 +103,16 @@ function SignIn({ history }) {
                   className="focus-input100"
                   data-placeholder="&#xf2c8;"
                 ></span>
+              </div> */}
+              <div className="wrap-input100 validate-input">
+                <label className="text-light">No HP</label>
+                <select
+                  className="form-control"
+                  onChange={handleChange("no_hp")}
+                >
+                  <option value="085156842765">085156842765</option>
+                  <option value="087730545111">087730545111</option>
+                </select>
               </div>
               {loginState.step === 1 && (
                 <div className="wrap-input100 validate-input">

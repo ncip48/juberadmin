@@ -1,8 +1,10 @@
+/* eslint-disable eqeqeq */
 import axios from "axios";
 
 // export const baseUrl = "http://45.77.173.173:9299";
+const type = localStorage.getItem("type");
 export const baseUrl = "https://api.juber.co.id:9300";
-export const uuid = "e4351a1d0579f6a0";
+export const uuid = type == 0 ? "e4351a1d0579f6a0" : "6d871f1da174eddc";
 export const baseRequest = axios.create({ baseURL: baseUrl });
 export const uploadRequest = axios.create({ baseURL: "https://juber.co.id" });
 export const socketHost = "http://116.193.191.172:8002";
@@ -29,7 +31,10 @@ export const generateHeaders = async (types) => {
       headers["Authorization"] = "Bearer " + auth.auth.token;
     }
     if (types.includes("irsauth")) {
-      headers["irsauth"] = "0bed9ef79bed8f89ac13927fd170d66d";
+      headers["irsauth"] =
+        type == 0
+          ? "0bed9ef79bed8f89ac13927fd170d66d"
+          : "c759da1f4d18d01efb3ab9cb84794cbb";
     }
 
     if (types.includes("irsauth_header")) {
