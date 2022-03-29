@@ -173,11 +173,12 @@ function MenuCreate({ history, location }) {
   };
 
   const splitNextPage = (item, type = "nextpage") => {
-    if (item?.includes("#")) {
+    if (!item) return "";
+    if (item.includes("#")) {
       if (type == "nextpage") {
-        return item?.split("#")[0];
+        return item.split("#")[0];
       } else if (type == "webview") {
-        return item?.split("#")[1];
+        return item.split("#")[1];
       }
     } else {
       if (type == "nextpage") {
