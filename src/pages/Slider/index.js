@@ -103,6 +103,19 @@ function Slider({ history }) {
     getSliders();
   };
 
+  const deleteSlider = async (id) => {
+    await dispatch(
+      _fetch(
+        BridgeService.JbDelivery({
+          key: "deleteslider",
+          payload: JSON.stringify({ idapps: id }),
+        }),
+        false
+      )
+    );
+    getSliders();
+  };
+
   const uploadImage = async (data, type) => {
     const res = await dispatch(_fetch(GlobalService.uploadFoto(data)));
     if (!res?.success) return;
@@ -249,7 +262,7 @@ function Slider({ history }) {
                                 }}
                               />
                             </a>
-                            {/* <div
+                            <div
                               style={{
                                 width: "1.5rem",
                                 height: "1.5rem",
@@ -258,7 +271,7 @@ function Slider({ history }) {
                                 justifyContent: "center",
                               }}
                               className="text-center d-flex justify-content-center align-items-center"
-                              onClick={() => deleteImage(res.value)}
+                              onClick={() => deleteSlider(res.idapps)}
                             >
                               <i
                                 className="material-icons"
@@ -266,7 +279,7 @@ function Slider({ history }) {
                               >
                                 cancel
                               </i>
-                            </div> */}
+                            </div>
                           </div>
                         );
                       })}
