@@ -47,6 +47,7 @@ import {
   ListBlokir,
   ListBlokirDriver,
   Slider,
+  MappingOto,
 } from "./pages";
 import { LoginRoute } from "./components/LoginRoute";
 
@@ -109,6 +110,7 @@ const Routes = () => (
       <PrivateRoute path="/list-block" component={ListBlokir} />
       <PrivateRoute path="/list-driver-block" component={ListBlokirDriver} />
       <PrivateRoute path="/sliders" component={Slider} />
+      <PrivateRoute path="/mapping-oto" component={MappingOto} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>

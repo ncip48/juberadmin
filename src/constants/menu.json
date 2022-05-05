@@ -154,5 +154,11 @@
     "icon": "slideshow",
     "to": "sliders",
     "active": "slider"
+  },
+  {
+    "name": "Mapping OTO",
+    "icon": "map",
+    "to": "mapping-oto",
+    "active": "mapping-oto"
   }
 ]

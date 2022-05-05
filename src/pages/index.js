@@ -41,6 +41,7 @@ import ChatAdmin from "./ChatAdmin";
 import ListBlokir from "./ListBlokir";
 import ListBlokirDriver from "./ListBlokirDriver";
 import Slider from "./Slider";
+import MappingOto from "./MappingOto";
 
 export {
   SignIn,
@@ -86,4 +87,5 @@ export {
   ListBlokir,
   ListBlokirDriver,
   Slider,
+  MappingOto,
 };
