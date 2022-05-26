@@ -20,11 +20,13 @@ import { cipher, formatDate } from "../../helpers";
 import { _fetch } from "../../redux/actions/global";
 import { withRouter } from "react-router-dom";
 import chat_api, { getSocketApi } from "../../api/websocket";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ScrollToBottom from "react-scroll-to-bottom";
 import io from "socket.io-client";
 import { socketHost } from "../../config";
 import moment from "moment";
+import { setChat } from "../../redux/actions/chat";
+import { setUserInfo } from "../../redux/actions/auth";
 
 const ListUser = ({ item, active, onClick }) => {
   return (
@@ -45,7 +47,8 @@ const ListUser = ({ item, active, onClick }) => {
             <span className="text-strong">
               {item.opponent[0].name ?? "Error"}
             </span>
-            <small className="pull-right">
+            <small className="pull-right text-right">
+              {item.Last_chat[0].chat_read == 0 && <div>Chat belum dibaca</div>}
               {formatDate(item.Last_chat[0].chat_created_at, "hour:minute")}
             </small>
           </p>
@@ -59,8 +62,10 @@ const ListUser = ({ item, active, onClick }) => {
 };
 
 function ChatAdmin({ history }) {
+  const dispatch = useDispatch();
   const [result, setResult] = useState(null);
   const user = useSelector((state) => state.auth.user);
+  const chat_data = useSelector((state) => state.chat.chat);
   const [selectedItem, setSelectedItem] = useState(null);
   const enc = cipher("akuimuet");
   const [inputText, setInputText] = useState("");
@@ -70,14 +75,18 @@ function ChatAdmin({ history }) {
   const [messages, setMessages] = useState({});
   const [chatIsi, setChatIsi] = useState(null);
 
+  console.log("chat_data", chat_data);
+
   useEffect(() => {
     let token = localStorage.getItem("token");
     let params = {
-      id: selectedItem?.you[0]?.nickname ?? user.idrs + "_adminjuber",
+      id: selectedItem?.you[0]?.nickname ?? user?.idrs + "_adminjuber",
       senderIdrs: selectedItem?.opponent[0]?.nickname ?? "Error",
       token,
       isChat: true,
     };
+
+    console.log(params);
 
     socket.emit("new user", params);
     getChatDetail();
@@ -97,6 +106,7 @@ function ChatAdmin({ history }) {
 
     socket.on("chat", (data) => {
       addNewChat(data);
+      getList();
     });
 
     socket.on("connection", () => {
@@ -118,7 +128,7 @@ function ChatAdmin({ history }) {
       method: getSocketApi.chat.detail_chat.method,
       url: getSocketApi.chat.detail_chat.url,
       payload: {
-        idrs: selectedItem?.you[0]?.nickname ?? user.idrs + "_adminjuber",
+        idrs: selectedItem?.you[0]?.nickname ?? user?.idrs + "_adminjuber",
         senderIdrs: selectedItem?.opponent[0]?.nickname ?? "Error",
         isUser: false,
       },
@@ -152,13 +162,14 @@ function ChatAdmin({ history }) {
     socket.emit("chat", params);
     // this.GroupedChat(state.data);
     addNewChat(params);
-    // getList();
+    getList();
   };
 
-  //   console.log(messages);
+  // console.log(messages);
 
   useEffect(() => {
     getList();
+    getStorage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -173,9 +184,15 @@ function ChatAdmin({ history }) {
         is_user: false,
       },
     });
-    // console.log(data);
-    setResult(data?.data);
+    console.log(data.data);
+    // setResult(data?.data);
+    await dispatch(setChat(data.data));
+    // await dispatch(setUserInfo("chat_data", data.data));
+    // const root = JSON.stringify(data.data);
+    // await localStorage.setItem("chat_data", root);
   };
+
+  const getStorage = async () => {};
 
   const setItem = (item) => {
     setSelectedItem(item);
@@ -222,12 +239,15 @@ function ChatAdmin({ history }) {
                               minHeight: 625,
                             }}
                           >
-                            {result?.map((item, index) => {
+                            {chat_data?.map((item, index) => {
                               return (
                                 <ListUser
                                   item={item}
                                   key={index}
-                                  onClick={(it) => setItem(it)}
+                                  onClick={(it) => {
+                                    setItem(it);
+                                    getList();
+                                  }}
                                   active={item?.id === selectedItem?.id}
                                 />
                               );
@@ -291,7 +311,7 @@ function ChatAdmin({ history }) {
                                           data: {},
                                           id:
                                             selectedItem.you[0]?.nickname ??
-                                            user.idrs + "_adminjuber",
+                                            user?.idrs + "_adminjuber",
                                           isUser: false,
                                           nama:
                                             selectedItem.you[0]?.name ??

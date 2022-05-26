@@ -81,6 +81,31 @@ class Sidebar extends Component {
               <li className="menu-heading">
                 <span>-- Main</span>
               </li>
+              <li className="nav-item" style={{ padding: "17px 15px" }}>
+                <div className="validate-input">
+                  <label className="text-light">Environment</label>
+                  <select
+                    className="form-control"
+                    onChange={(e) => {
+                      localStorage.setItem("state", e.target.value);
+                      window.location.reload(false);
+                    }}
+                  >
+                    <option
+                      value="dev"
+                      selected={localStorage.getItem("state") === "dev"}
+                    >
+                      Development
+                    </option>
+                    <option
+                      value="production"
+                      selected={localStorage.getItem("state") === "production"}
+                    >
+                      Production
+                    </option>
+                  </select>
+                </div>
+              </li>
               {items.map((item, index) => {
                 return (
                   <li

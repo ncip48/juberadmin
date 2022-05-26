@@ -1,15 +1,23 @@
 let users = localStorage.getItem("user");
 const user = JSON.parse(users);
+let chats = localStorage.getItem("chat_data");
+const chat = JSON.parse(chats);
 const initialState = user
-  ? { loggedIn: true, user: user.auth, token: null }
+  ? { loggedIn: true, user: user.auth, token: null, chat: chat }
   : {};
 
 export function Auth(state = initialState, action) {
   switch (action.type) {
     case "LOGIN_SUCCESS":
       return {
+        ...state,
         loggingIn: true,
         user: action.user,
+      };
+    case "SET_CHAT_2":
+      return {
+        ...state,
+        chat: action.chat,
       };
     case "SET_USER_INFO":
       const otherUserInfo = Object.keys(state.user)

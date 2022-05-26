@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BridgeService } from "./services";
 import { _fetch_nomsg } from "./redux/actions/global";
 import chat_api, { getSocketApi } from "./api/websocket";
+import { onMessage } from "firebase/messaging";
 // import { toast as t } from "react-toastify";
 
 const App = () => {
@@ -20,6 +21,22 @@ const App = () => {
 
   console.log("tokenfound?", isTokenFound);
 
+  const getList = async () => {
+    // console.log("hit");
+    let data = await chat_api({
+      method: getSocketApi.chat.list_chat_user.method,
+      url: getSocketApi.chat.list_chat_user.url,
+      payload: {
+        socket_nickname:
+          user?.idrs == "JB3003" ? "JB3003_adminjuber" : "JB3097_adminjuber",
+        is_user: false,
+      },
+    });
+    console.log(data);
+    const root = JSON.stringify(data.data);
+    await localStorage.setItem("chat_data", root);
+  };
+
   onMessageListener()
     .then((payload) => {
       setShow(true);
@@ -28,6 +45,7 @@ const App = () => {
         body: payload.notification.body,
       });
       console.log("isi", payload);
+      getList();
       // let notif = payload.notification;
       // t.info(`${notif.title}\n${notif.body}`, {
       //   position: t.POSITION.BOTTOM_CENTER,
@@ -77,6 +95,10 @@ const App = () => {
     updateToken();
     registerChat();
     localStorage.setItem("token", token);
+    const state = localStorage.getItem("state");
+    if (!state) {
+      localStorage.setItem("state", "production");
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 

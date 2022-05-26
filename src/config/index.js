@@ -3,7 +3,11 @@ import axios from "axios";
 
 // export const baseUrl = "http://45.77.173.173:9299";
 const type = localStorage.getItem("type");
-export const baseUrl = "https://api.juber.co.id:9300";
+
+const state = localStorage.getItem("state");
+
+export const baseUrl =
+  state == "dev" ? "http://45.77.173.173:9301" : "https://api.juber.co.id:9300";
 export const uuid = type == 0 ? "e4351a1d0579f6a0" : "6d871f1da174eddc";
 export const baseRequest = axios.create({ baseURL: baseUrl });
 export const uploadRequest = axios.create({ baseURL: "https://juber.co.id" });
