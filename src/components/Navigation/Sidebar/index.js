@@ -103,6 +103,12 @@ class Sidebar extends Component {
                     >
                       Production
                     </option>
+                    <option
+                      value="oto"
+                      selected={localStorage.getItem("state") === "oto"}
+                    >
+                      OTO
+                    </option>
                   </select>
                 </div>
               </li>
