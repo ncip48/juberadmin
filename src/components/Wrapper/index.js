@@ -18,6 +18,16 @@ function Wrapper({ children }) {
         >
           <div className="page-wrapper">{children}</div>
         </div>
+      ) : state_mode == "oto" ? (
+        <div
+          className={
+            toggled
+              ? "page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-indigo indigo-sidebar-color logo-indigo sidemenu-closed"
+              : "page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-indigo indigo-sidebar-color logo-indigo"
+          }
+        >
+          <div className="page-wrapper">{children}</div>
+        </div>
       ) : (
         <div
           className={
