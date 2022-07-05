@@ -229,9 +229,9 @@ function OtpSms({ history, location }) {
                   >
                     <thead>
                       <tr>
-                        <th className="center"> idapps </th>
-                        <th className="center"> desc </th>
-                        <th className="center"> value </th>
+                        <th className=""> idapps </th>
+                        <th className=""> desc </th>
+                        <th className=""> value </th>
                         <th className="center"> Action </th>
                       </tr>
                     </thead>
@@ -239,9 +239,9 @@ function OtpSms({ history, location }) {
                       {prefix?.map((item, index) => {
                         return (
                           <tr className="odd gradeX" key={index}>
-                            <td className="center">{item.idapps}</td>
-                            <td className="center">{item.desc}</td>
-                            <td className="center">
+                            <td className="">{item.idapps}</td>
+                            <td className="">{item.desc}</td>
+                            <td className="">
                               {item.value.replace(/\b#\b/g, ", ")}
                             </td>
                             <td className="center">
