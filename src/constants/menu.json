@@ -160,5 +160,11 @@
     "icon": "map",
     "to": "mapping-oto",
     "active": "mapping-oto"
+  },
+  {
+    "name": "Setting OTP SMS",
+    "icon": "message",
+    "to": "otp-sms",
+    "active": "otp-sms"
   }
 ]

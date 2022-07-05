@@ -42,6 +42,7 @@ import ListBlokir from "./ListBlokir";
 import ListBlokirDriver from "./ListBlokirDriver";
 import Slider from "./Slider";
 import MappingOto from "./MappingOto";
+import OtpSms from "./OtpSms";
 
 export {
   SignIn,
@@ -88,4 +89,5 @@ export {
   ListBlokirDriver,
   Slider,
   MappingOto,
+  OtpSms,
 };
