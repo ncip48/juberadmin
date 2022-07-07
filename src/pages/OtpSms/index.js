@@ -36,9 +36,9 @@ function OtpSms({ history, location }) {
     uuid: null,
   });
   const [formPrefix, setFormPrefix] = useState({
-    idapps: null,
-    value: null,
-    desc: null,
+    idapps: "",
+    value: "",
+    desc: "",
   });
   const [prefix, setPrefix] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
@@ -63,7 +63,7 @@ function OtpSms({ history, location }) {
   const getPrefix = async () => {
     const res = await dispatch(_fetch(NoAuthService.getSmsPrefix()));
     console.log(res);
-    setPrefix(res.data.lobj);
+    setPrefix(res.data.lobj.filter((r) => r.idapps != "smsgw#switch"));
   };
 
   const setSetting = async () => {
@@ -92,6 +92,13 @@ function OtpSms({ history, location }) {
   console.log("form", form);
 
   const saveAction = async () => {
+    if (
+      formPrefix.idapps == "" ||
+      formPrefix.value == "" ||
+      formPrefix.desc == ""
+    ) {
+      return toast.error("Mohon isi semua field");
+    }
     const payload = {
       idapps: formPrefix.idapps,
       value: formPrefix.value,
@@ -106,7 +113,7 @@ function OtpSms({ history, location }) {
       )
     );
     console.log(res);
-    toast.success("Berhasil update prefix");
+    toast.success("Berhasil update/simpan prefix");
     getPrefix();
   };
 
@@ -141,6 +148,11 @@ function OtpSms({ history, location }) {
             <div className="row">
               <div className="col-12">
                 <Card>
+                  <div className="alert alert-warning" role="alert">
+                    Atur SMS Gateway di bawah ini untuk all prefix ATAU by
+                    prefix. kalau ALL PREFIX di pilih ALL lalu SIMPAN, kalau by
+                    prefix pilih BY PREFIX
+                  </div>
                   <div className="form-group">
                     <label>Status</label>
                     <div
@@ -174,7 +186,7 @@ function OtpSms({ history, location }) {
                   </div>
                   {form.status == "ALL" && (
                     <Input
-                      label="UUID"
+                      label="UUID (UUID didapat dari APK Gateway cari Copy UUID)"
                       onChange={handleChange("uuid")}
                       placeholder="uuid"
                       value={form.uuid}
@@ -186,6 +198,13 @@ function OtpSms({ history, location }) {
                     onClick={() => setSetting()}
                   />
                 </Card>
+                <hr />
+                <div className="alert alert-warning" role="alert">
+                  Pengaturan di bawah ini untuk yang memilih opsi{" "}
+                  <b>BY PREFIX</b>, kalau ALL PREFIX TIDAK perlu
+                  mengisi/mengedit di bawah ini
+                </div>
+
                 <Card>
                   <Input
                     label="ID"
