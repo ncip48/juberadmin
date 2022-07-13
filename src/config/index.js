@@ -8,7 +8,7 @@ const state = localStorage.getItem("state");
 
 export const baseUrl =
   state == "dev"
-    ? "http://45.77.173.173:9301"
+    ? "http://45.77.173.173:9500"
     : state == "oto"
     ? "http://45.77.173.173:9299"
     : "https://api.juber.co.id:9300";
