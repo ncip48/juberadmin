@@ -12,7 +12,7 @@ export const baseUrl =
     : state == "oto"
     ? "http://45.77.173.173:9299"
     : "https://api.juber.co.id:9300";
-export const uuid = type == 0 ? "e4351a1d0579f6a0" : "6d871f1da174eddc";
+export const uuid = type == 0 ? "e4351a1d0579f6a0" : "f22d19a18ec37b52";
 export const baseRequest = axios.create({ baseURL: baseUrl });
 export const uploadRequest = axios.create({ baseURL: "https://juber.co.id" });
 export const socketHost = "http://116.193.191.172:8002";
@@ -42,7 +42,7 @@ export const generateHeaders = async (types) => {
       headers["irsauth"] =
         type == 0
           ? "0bed9ef79bed8f89ac13927fd170d66d"
-          : "c759da1f4d18d01efb3ab9cb84794cbb";
+          : "7b9bd796f2de92fa56cc12434a62c2ae";
     }
 
     if (types.includes("irsauth_header")) {
